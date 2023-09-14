@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, system, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -31,44 +31,114 @@
     rustup
     unzip
     spotify
-  ];
+    (inputs.nixvim.legacyPackages."${system}".makeNixvim {
+      globals.mapleader = " ";
 
-  # programs.neovim = import ./programs/neovim (config, pkgs);
-  programs.neovim = {
-    enable = true;
-    plugins = with pkgs.vimPlugins;
-      let
+      extraConfigLua = ''
+        -- Prevent rust-analyzer from hogging the lock file
+        vim.fn.setenv("CARGO_TARGET_DIR", "/tmp/nvim-rust-target"..os.getenv("PWD"))
+        vim.fn.setenv("CARGO_LOCKED", "")
+
+        --Text rename
+        vim.keymap.set("n", "<C-t>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
         
-      in [
-	nvim-cmp
-	cmp-buffer
-	cmp-path
-	cmp-nvim-lua
-	cmp-nvim-lsp
+        vim.keymap.set("n", "<leader>l", "<C-o>")
+        vim.keymap.set("n", "<leader><leader>", ":b#<CR>")
+        -- noremap <leader>n :bnext<CR>
+        -- noremap <leader>b :bprev<CR>
+        
+        -- close buffer
+        vim.keymap.set("n", "<leader>e", ":bd<CR>")
+        
+        -- make Dvorak Programmer keys function like digits without shift
+        vim.keymap.set("n", "[", "7")
+        vim.keymap.set("n", "{", "5")
+        vim.keymap.set("n", "}", "3")
+        vim.keymap.set("n", "(", "1")
+        vim.keymap.set("n", "=", "9")
+        vim.keymap.set("n", "*", "0")
+        vim.keymap.set("n", ")", "2")
+        vim.keymap.set("n", "+", "4")
+        vim.keymap.set("n", "]", "6")
+        vim.keymap.set("n", "!", "8")
+        
+        -- disable arrow keys
+        vim.keymap.set("i", "<Up>", "<Nop>")
+        vim.keymap.set("i", "<Down>", "<Nop>")
+        vim.keymap.set("i", "<Left>", "<Nop>")
+        vim.keymap.set("i", "<Right>", "<Nop>")
+        
+        vim.keymap.set("n", "<Up>", "<Nop>")
+        vim.keymap.set("n", "<Down>", "<Nop>")
+        vim.keymap.set("n", "<Left>", "<Nop>")
+        vim.keymap.set("n", "<Right>", "<Nop>")
+        
+        -- use kk and jj to perform escape
+        vim.keymap.set("i", "kk", "<Esc>")
+        vim.keymap.set("i", "jj", "<Esc>:w<CR>")
+      '';
 
-	luasnip
-	friendly-snippets
-	nvim-treesitter-parsers.rust
-        # gruvbox-community
-        # vim-airline
-	# nvim-cmp
-	# lsp-zero
-        # telescope-nvim
-      ]; # Only loaded if programs.neovim.extraConfig is set
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-  };
+
+      colorschemes.gruvbox.enable = true;
+      plugins.lightline.enable = true;
+      plugins.treesitter.enable = true;
+
+      plugins.lsp = {
+        enable = true;
+        servers.rust-analyzer.enable = true;
+        onAttach = ''
+          local opts = {buffer = bufnr, remap = false}
+
+          vim.keymap.set("n", ",h", function() vim.lsp.buf.definition() end, opts)
+          vim.keymap.set("n", ",d", function() vim.lsp.buf.hover() end, opts)
+          vim.keymap.set("n", ",i", function() vim.lsp.buf.implementation() end, opts)
+          vim.keymap.set("n", "<C-k>", function() vim.lsp.buf.signature_help() end, opts)
+          vim.keymap.set("n", "<space>d", function() vim.lsp.buf.type_definition() end, opts)
+          vim.keymap.set("n", ",t", function() vim.lsp.buf.rename() end, opts)
+          vim.keymap.set("n", ",w", function() vim.lsp.buf.code_action() end, opts)
+          vim.keymap.set("n", ",r", function() vim.lsp.buf.references() end, opts)
+          vim.keymap.set("n", "<space>f", function() vim.lsp.buf.formatting() end, opts)
+
+          vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+          vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+          vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+          vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+          vim.keymap.set("n", ",n", function() vim.diagnostic.goto_next() end, opts)
+          vim.keymap.set("n", ",d", function() vim.diagnostic.goto_prev() end, opts)
+          vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+          vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+          vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+          vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+        '';
+      };
+
+      plugins.cmp-nvim-lsp.enable = true;
+      plugins.nvim-cmp.enable = true;
+      plugins.cmp-path.enable = true;
+      plugins.cmp-buffer.enable = true;
+      plugins.cmp-nvim-lua.enable = true;
+      plugins.crates-nvim.enable = true;
+      plugins.telescope.enable = true;
+
+      options = {
+        number = true;
+        relativenumber = true;
+
+        expandtab = true;
+	cmdheight = 1;
+        shiftwidth = 4;
+      };
+
+    })
+  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # ".config/nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim/init.lua;
-    ".config/nvim/init.lua".source = ./dotfiles/nvim/init.lua;
-    ".config/nvim/lua/misc.lua".source = ./dotfiles/nvim/lua/misc.lua;
+
+    ".gitconfig".source = ./dotfiles/.gitconfig;
+
     ".config/nvim/lua/remap.lua".source = ./dotfiles/nvim/lua/remap.lua;
-    ".config/nvim/after/plugin/lsp.lua".source = ./dotfiles/nvim/after/plugin/lsp.lua;
-    ".config/.gitconfig".source = ./dotfiles/.gitconfig;
     
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
