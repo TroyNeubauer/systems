@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running `nixos-help`).
-
 { config, pkgs, callPackage, ... }:
 
 {
@@ -60,6 +56,7 @@
     python3
     plymouth
     tree
+    wireguard-tools
   ];
 
   services.xserver = {
@@ -123,6 +120,37 @@
       liberation_ttf
       emojione
     ];
+  };
+
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowPing = true;
+
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = true;
+    extraConfig = ''ListenAddress = 10.222.0.3'';
+  };
+
+  networking.wireguard.interfaces = {
+    wg0 = {
+      ips = [ "10.222.0.3/24" ];
+      listenPort = 51820;
+
+      privateKeyFile = "/etc/secrets/wg-battlestation-private";
+
+      peers = [
+        {
+          publicKey = "RghT14Gj3wFDWhtpYP+eC1xOSnWB2hKnpx23ZsEn3Gs=";
+
+          # Forward subnet
+          allowedIPs = [ "10.222.0.0/24" ];
+
+          endpoint = "45.86.230.190:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
   };
 
   system.stateVersion = "23.05"; # Did you read the comment?
