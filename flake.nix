@@ -2,14 +2,14 @@
   description = "Home sweet home";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; 
   };
 
   outputs = {
@@ -34,9 +34,10 @@
 	stateVersion,
       }: let
         pkgs = nixpkgs.legacyPackages.${system};
+        lib = home-manager.lib;
       in [
         (import ./home.nix {
-          inherit username homeDirectory stateVersion pkgs nixpkgs home-manager;
+          inherit username homeDirectory stateVersion pkgs nixpkgs home-manager lib;
 	})
       ];
     rawHomeManagerConfigurations = {
@@ -45,7 +46,7 @@
 	username = "troy";
 	host = "battlestation";
 	homeDirectory = "/home/troy";
-	stateVersion = "unstable";
+	stateVersion = "23.05";
       };
       "troyneubauer@Troys-MacBook-Air" = {
         system = "aarch64-darwin";
@@ -72,9 +73,9 @@
     in {
       # Export home-manager configurations
       inherit rawHomeManagerConfigurations;
+
       homeConfigurations = nixpkgs.lib.attrsets.mapAttrs
-        (userAndHost: userAndHostConfig: homeManagerConfiguration userAndHostConfig)
-      rawHomeManagerConfigurations;
+        (userAndHost: userAndHostConfig: homeManagerConfiguration userAndHostConfig) rawHomeManagerConfigurations;
     })
     // {
       inherit flake-utils home-manager nixpkgs;
