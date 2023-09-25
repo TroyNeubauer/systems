@@ -1,83 +1,56 @@
 {
-  description = "Home sweet home";
+  description = "Flake for systems";
 
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; 
+    home.url = "path:./home";
   };
 
   outputs = {
     self,
-    flake-utils,
-    home-manager,
-    nixpkgs
-  }:
-    (flake-utils.lib.eachDefaultSystem (system: let
+    home,
+    ...
+  }: let
+    flake-utils = home.flake-utils;
+    home-manager = home.home-manager;
+    nixpkgs = home.nixpkgs;
+  in (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      defaultApp = {
-        type = "app";
-	program = "${home-manager.packages.${system}.default}/bin/home-manager";
+      devShells.default = pkgs.mkShell {
+        buildInputs = with pkgs; [age alejandra sops];
       };
-    }))
-    // (let
-      homeManagerModules = {
-        system,
-	username,
-	homeDirectory,
-	stateVersion,
-      }: let
-        pkgs = nixpkgs.legacyPackages.${system};
-        lib = home-manager.lib;
-      in [
-        (import ./home.nix {
-          inherit username homeDirectory stateVersion pkgs nixpkgs home-manager lib;
-	})
-      ];
-    rawHomeManagerConfigurations = {
-      "troy@battlestation" = {
-        system = "x86_64-linux";
-	username = "troy";
-	host = "battlestation";
-	homeDirectory = "/home/troy";
-	stateVersion = "23.05";
-      };
-      "troyneubauer@Troys-MacBook-Air" = {
-        system = "aarch64-darwin";
-	username = "troyneubauer";
-	host = "Troys-MacBook-Air";
-	homeDirectory = "/Users/troyneubauer";
-	stateVersion = "23.05";
-      };
-    };
-
-    homeManagerConfiguration = {
-      system,
-      username,
-      host,
-      homeDirectory,
-      stateVersion,
-    }: (let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-      home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-	modules = homeManagerModules { inherit system username homeDirectory stateVersion; };
-      });
-    in {
-      # Export home-manager configurations
-      inherit rawHomeManagerConfigurations;
-
-      homeConfigurations = nixpkgs.lib.attrsets.mapAttrs
-        (userAndHost: userAndHostConfig: homeManagerConfiguration userAndHostConfig) rawHomeManagerConfigurations;
     })
-    // {
-      inherit flake-utils home-manager nixpkgs;
-    };
+    // (let
+      mapMachineConfigurations = nixpkgs.lib.mapAttrs (host: configuration:
+        nixpkgs.lib.nixosSystem (
+          let
+            hmConfiguration = home.rawHomeManagerConfigurations."${configuration.user}@${host}";
+	    lib = nixpkgs.lib;
+          in {
+            inherit (configuration) system;
+            modules =
+              configuration.modules
+              ++ [
+                home-manager.nixosModules.home-manager
+                {
+                  home-manager.users.${configuration.user} = import "${home}/home.nix" {
+                    pkgs = nixpkgs.legacyPackages.${configuration.system};
+                    inherit (home) home-manager nixpkgs;
+                    inherit (hmConfiguration) username homeDirectory stateVersion lib;
+                  };
+                }
+              ];
+          }
+        ));
+    in {
+      nixosConfigurations = mapMachineConfigurations {
+        "battlestation" = {
+          system = "x86_64-linux";
+          user = "troy";
+          modules = [
+            ./configuration.nix
+          ];
+        };
+      };
+    }));
 }

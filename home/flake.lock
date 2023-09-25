@@ -18,27 +18,9 @@
         "type": "github"
       }
     },
-    "home": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-d+a8nJvsStVs22AZhd/sbtqXNWZcUwtPmaWvvyCmWxM=",
-        "path": "./home",
-        "type": "path"
-      },
-      "original": {
-        "path": "./home",
-        "type": "path"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
-          "home",
           "nixpkgs"
         ]
       },
@@ -74,7 +56,9 @@
     },
     "root": {
       "inputs": {
-        "home": "home"
+        "flake-utils": "flake-utils",
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {
