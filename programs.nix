@@ -18,12 +18,13 @@
       enable = true;
       delta.enable = true;
       userName = "Troy Neubauer";
+      userEmail = "troyneubauer@gmail.com";
       extraConfig = {
         color = {
           ui = "auto";
         };
         commit = {
-          gpgsign = true;
+          # gpgsign = true;
         };
         core = {
           excludesfile = "~/.gitignore";
