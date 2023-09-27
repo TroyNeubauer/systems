@@ -4,13 +4,24 @@
   ...
 }: 
 {
-
   home.packages = with pkgs; [
-    htop
     alacritty
+    eza
     fish
+    # discord
+    delta
+    firefox
     fzf
     git
+    htop
+    hunspell
+    hunspellDicts.en_US
+    libreoffice-qt
+    pavucontrol
+    rustup
+    gcc
+    unzip
+    # spotify
   ];
 
   programs = {

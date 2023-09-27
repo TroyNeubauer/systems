@@ -29,7 +29,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Set your time zone.
-  time.timeZone = "America/NewYork";
+  time.timeZone = "America/New_York";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -47,6 +47,7 @@
 
   environment.systemPackages = with pkgs; [
     curl
+    discord
     file
     fish
     git
@@ -88,7 +89,7 @@
       ];
     };
   };
-  
+
   hardware.nvidia.nvidiaSettings = true;
   hardware.opengl.enable = true;
   hardware.nvidia.modesetting.enable = true;
@@ -128,7 +129,7 @@
 
   services.openssh = {
     enable = true;
-    passwordAuthentication = true;
+    settings.PasswordAuthentication = true;
     extraConfig = ''ListenAddress = 10.222.0.3'';
   };
 
@@ -138,6 +139,7 @@
       listenPort = 51820;
 
       privateKeyFile = "/etc/secrets/wg-battlestation-private";
+      # publicKey = "SPZtxJdmrFdmQWHimhoxRhOFXBoCMk2f34KMClFVkBU=";
 
       peers = [
         {

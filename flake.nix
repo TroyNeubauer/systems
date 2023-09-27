@@ -13,6 +13,7 @@
     flake-utils = home.flake-utils;
     home-manager = home.home-manager;
     nixpkgs = home.nixpkgs;
+
   in (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {

@@ -9,31 +9,28 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; 
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs = {
     self,
     flake-utils,
     home-manager,
-    nixpkgs
+    nixpkgs,
   }:
-    (flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      defaultApp = {
-        type = "app";
-	program = "${home-manager.packages.${system}.default}/bin/home-manager";
+    (let
+      pkgs = import <nixpkgs> {
+        config = {
+          allowUnfree = true;
+        };
       };
-    }))
-    // (let
       homeManagerModules = {
         system,
 	username,
 	homeDirectory,
 	stateVersion,
+	pkgs,
       }: let
-        pkgs = nixpkgs.legacyPackages.${system};
         lib = home-manager.lib;
       in [
         (import ./home.nix {
@@ -63,10 +60,8 @@
       host,
       homeDirectory,
       stateVersion,
-    }: (let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-      home-manager.lib.homeManagerConfiguration {
+      pkgs,
+    }: (home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 	modules = homeManagerModules { inherit system username homeDirectory stateVersion; };
       });
@@ -77,6 +72,7 @@
       homeConfigurations = nixpkgs.lib.attrsets.mapAttrs
         (userAndHost: userAndHostConfig: homeManagerConfiguration userAndHostConfig) rawHomeManagerConfigurations;
     })
+    
     // {
       inherit flake-utils home-manager nixpkgs;
     };
