@@ -8,7 +8,6 @@
     alacritty
     eza
     fish
-    # discord
     delta
     firefox
     fzf
@@ -21,7 +20,6 @@
     rustup
     gcc
     unzip
-    # spotify
   ];
 
   programs = {
@@ -51,7 +49,7 @@
         };
         push = {
           default = "current";
-	  autoSetupRemote = true;
+          autoSetupRemote = true;
         };
       };
 

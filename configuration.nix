@@ -48,6 +48,7 @@
   environment.systemPackages = with pkgs; [
     curl
     discord
+    spotify
     file
     fish
     git
