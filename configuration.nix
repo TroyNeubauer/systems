@@ -55,7 +55,6 @@
     htop
     neovim
     nvtop
-    virt-manager
     python3
     plymouth
     tree
@@ -176,9 +175,9 @@
     };
   };
 
-  # Virtualisation
-  virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
+  # virtualisation
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "troy" ];
 
   system.stateVersion = "23.05"; # Did you read the comment?
 }
