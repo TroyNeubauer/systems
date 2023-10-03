@@ -4,7 +4,6 @@
   pkgs,
   nixpkgs,
   home-manager,
-  lib,
   ...
 }:
 {

@@ -18,12 +18,19 @@
     home-manager,
     nixpkgs,
   }:
-    (let
-      pkgs = import <nixpkgs> {
-        config = {
-          allowUnfree = true;
-        };
+    (flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      devShell = pkgs.mkShell {
+        buildInputs = with pkgs; [alejandra];
       };
+      defaultApp = {
+        type = "app";
+        program = "${home-manager.packages.${system}.default}/bin/home-manager";
+      };
+    }))
+
+    // (let
       homeManagerModules = {
         system,
 	username,
@@ -31,10 +38,10 @@
 	stateVersion,
 	pkgs,
       }: let
-        lib = home-manager.lib;
+        pkgs = nixpkgs.legacyPackages.${system};
       in [
         (import ./home.nix {
-          inherit username homeDirectory stateVersion pkgs nixpkgs home-manager lib;
+          inherit username homeDirectory stateVersion pkgs nixpkgs home-manager;
 	})
       ];
     rawHomeManagerConfigurations = {
