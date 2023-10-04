@@ -40,7 +40,7 @@
 
   users.users.troy = {
     isNormalUser = true;
-    extraGroups = [ "libvirtd" "wheel" "networkmanager" "disk" "audio" "video" "docker" "systemd-journal" ];
+    extraGroups = [ "wheel" "networkmanager" "disk" "audio" "video" "docker" "systemd-journal" ];
   };
 
   nixpkgs.config.firefox.speechSynthesisSupport = true;
@@ -176,8 +176,8 @@
   };
 
   # virtualisation
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "troy" ];
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "troy" ];
 
   system.stateVersion = "23.05"; # Did you read the comment?
 }
