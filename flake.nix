@@ -2,17 +2,21 @@
   description = "Flake for systems";
 
   inputs = {
-    home.url = "path:./home";
+    # home.url = "./path:./home";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = {
     self,
-    home,
+    flake-utils,
+    nixpkgs,
     ...
   }: let
-    flake-utils = home.flake-utils;
-    home-manager = home.home-manager;
-    nixpkgs = home.nixpkgs;
+    # flake-utils = home.flake-utils;
+    # flake-utils = inputs.flake-utils;
+    # home-manager = home.home-manager;
 
   in (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
@@ -25,22 +29,23 @@
       mapMachineConfigurations = nixpkgs.lib.mapAttrs (host: configuration:
         nixpkgs.lib.nixosSystem (
           let
-            hmConfiguration = home.rawHomeManagerConfigurations."${configuration.user}@${host}";
+            # hmConfiguration = home.rawHomeManagerConfigurations."${configuration.user}@${host}";
 	    lib = nixpkgs.lib;
           in {
             inherit (configuration) system;
             modules =
               configuration.modules
-              ++ [
-                home-manager.nixosModules.home-manager
-                {
-                  home-manager.users.${configuration.user} = import "${home}/home.nix" {
-                    pkgs = nixpkgs.legacyPackages.${configuration.system};
-                    inherit (home) home-manager nixpkgs;
-                    inherit (hmConfiguration) username homeDirectory stateVersion lib;
-                  };
-                }
-              ];
+              # ++ [
+              #   home-manager.nixosModules.home-manager
+              #   {
+              #     home-manager.users.${configuration.user} = import "${home}/home.nix" {
+              #       pkgs = nixpkgs.legacyPackages.${configuration.system};
+              #       inherit (home) home-manager nixpkgs;
+              #       inherit (hmConfiguration) username homeDirectory stateVersion lib;
+              #     };
+              #   }
+              # ]
+	      ;
           }
         ));
     in {
