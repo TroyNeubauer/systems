@@ -35,7 +35,7 @@ vim.o.undodir = "/home/troy/.vimdid"
 vim.o.undofile = true
 
 -- Highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 -- Show line numbers
 vim.wo.number = true
 vim.o.mouse = 'a'

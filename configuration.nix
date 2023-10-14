@@ -120,6 +120,8 @@
       freefont_ttf
       liberation_ttf
       emojione
+      noto-fonts
+      noto-fonts-extra
     ];
   };
 

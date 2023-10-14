@@ -80,13 +80,18 @@
         nvim-treesitter.withAllGrammars
         plenary-nvim 
         gruvbox-nvim
+        luasnip
 
         lsp-zero-nvim
         nvim-cmp
+        cmp_luasnip
         cmp-nvim-lsp
         cmp-buffer
         cmp-path
         cmp-cmdline
+
+        lualine-nvim
+        lualine-lsp-progress
       ];
     };
 
