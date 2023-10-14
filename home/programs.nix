@@ -82,8 +82,11 @@
         gruvbox-nvim
 
         lsp-zero-nvim
-        cmp-nvim-lsp
         nvim-cmp
+        cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        cmp-cmdline
       ];
     };
 

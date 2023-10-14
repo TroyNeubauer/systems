@@ -25,10 +25,6 @@ cmp.setup {
 }
 
 
--- lsp.setup_nvim_cmp({
---   mapping = cmp_mappings
--- })
-
 lsp.set_preferences({
     suggest_lsp_servers = false,
 })
@@ -68,9 +64,5 @@ lsp.new_server({
     return root
   end
 })
-
--- lsp.ensure_installed({
--- 	"rust_analyzer",
--- })
 
 lsp.setup()
