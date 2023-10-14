@@ -58,7 +58,6 @@
     plymouth
     tree
     wireguard-tools
-    rustup
   ];
 
   services.xserver = {

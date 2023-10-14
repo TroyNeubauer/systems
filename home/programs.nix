@@ -25,6 +25,7 @@
     ".config/nvim/init.lua".source = ./dotfiles/nvim/init.lua;
     ".config/nvim/lua/remap.lua".source = ./dotfiles/nvim/lua/remap.lua;
     ".config/nvim/lua/misc.lua".source = ./dotfiles/nvim/lua/misc.lua;
+    ".config/nvim/lua/lsp.lua".source = ./dotfiles/nvim/lua/lsp.lua;
     # ".emacs.d/early-init.el".source = config.lib.file.mkOutOfStoreSymlink ./early-init.el; 
   };
 
@@ -39,7 +40,7 @@
           ui = "auto";
         };
         commit = {
-	  # TODO: re-setup signing keys
+	      # TODO: re-setup signing keys
           # gpgsign = true;
         };
         core = {
@@ -67,12 +68,22 @@
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+
+      extraPackages = with pkgs; [
+        fzf
+        rust-analyzer
+      ];
+
       plugins = with pkgs.vimPlugins; [
         # nvim-lspconfig
         vim-nix
         nvim-treesitter.withAllGrammars
         plenary-nvim 
         gruvbox-nvim
+
+        lsp-zero-nvim
+        cmp-nvim-lsp
+        nvim-cmp
       ];
     };
 
