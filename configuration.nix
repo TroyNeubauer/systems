@@ -60,6 +60,8 @@
     wireguard-tools
   ];
 
+  programs.neovim.defaultEditor = true;
+
   services.xserver = {
     enable = true;
 
