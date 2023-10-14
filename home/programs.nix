@@ -1,5 +1,5 @@
 {
-  pkgs,
+ pkgs,
   ...
 }: 
 {
@@ -21,6 +21,13 @@
     unzip
   ];
 
+  home.file = { 
+    ".config/nvim/init.lua".source = ./dotfiles/nvim/init.lua;
+    ".config/nvim/lua/remap.lua".source = ./dotfiles/nvim/lua/remap.lua;
+    ".config/nvim/lua/misc.lua".source = ./dotfiles/nvim/lua/misc.lua;
+    # ".emacs.d/early-init.el".source = config.lib.file.mkOutOfStoreSymlink ./early-init.el; 
+  };
+
   programs = {
     git = {
       enable = true;
@@ -32,6 +39,7 @@
           ui = "auto";
         };
         commit = {
+	  # TODO: re-setup signing keys
           # gpgsign = true;
         };
         core = {
@@ -51,7 +59,22 @@
           autoSetupRemote = true;
         };
       };
-
     };
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+      plugins = with pkgs.vimPlugins; [
+        # nvim-lspconfig
+        vim-nix
+        nvim-treesitter.withAllGrammars
+        plenary-nvim 
+        gruvbox-nvim
+      ];
+    };
+
   };
 }

@@ -4,10 +4,34 @@ vim.fn.setenv("CARGO_TARGET_DIR", "/tmp/nvim-rust-target"..os.getenv("PWD"))
 vim.o.termguicolors = true
 vim.o.t_co = 256
 
-vim.cmd('colorscheme base16-gruvbox-dark-hard')
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = false,
+})
+vim.cmd("colorscheme gruvbox")
 
 -- Permanent undo
-vim.o.undodir = "~/.vimdid"
+vim.o.undodir = "/home/troy/.vimdid"
 vim.o.undofile = true
 
 -- Highlight on search
