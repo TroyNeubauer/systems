@@ -18,7 +18,6 @@
     extraOptions = "experimental-features = nix-command flakes";
   };
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -59,6 +58,7 @@
     plymouth
     tree
     wireguard-tools
+    rustup
   ];
 
   services.xserver = {
@@ -175,10 +175,9 @@
     };
   };
 
-  # virtualisation
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "troy" ];
+  # Virtualisation
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "troy" ];
 
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.05";
 }
-
