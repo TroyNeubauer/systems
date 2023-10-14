@@ -1,6 +1,8 @@
 -- Prevent rust-analyzer from hogging the lock file
 vim.fn.setenv("CARGO_TARGET_DIR", "/tmp/nvim-rust-target"..os.getenv("PWD"))
 
+require("telescope").load_extension("zf-native")
+
 vim.o.termguicolors = true
 vim.o.t_co = 256
 
