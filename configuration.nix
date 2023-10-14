@@ -56,6 +56,7 @@
     nvtop
     python3
     plymouth
+    ripgrep
     tree
     wireguard-tools
   ];

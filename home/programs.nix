@@ -23,8 +23,8 @@
 
   home.file = { 
     ".config/nvim/init.lua".source = ./dotfiles/nvim/init.lua;
-    ".config/nvim/lua/lsp.lua".source = ./dotfiles/nvim/lua/lsp.lua;
     ".config/nvim/lua/line.lua".source = ./dotfiles/nvim/lua/line.lua;
+    ".config/nvim/lua/lsp.lua".source = ./dotfiles/nvim/lua/lsp.lua;
     ".config/nvim/lua/misc.lua".source = ./dotfiles/nvim/lua/misc.lua;
     ".config/nvim/lua/remap.lua".source = ./dotfiles/nvim/lua/remap.lua;
   };

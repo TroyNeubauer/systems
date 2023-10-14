@@ -53,12 +53,11 @@ function toggle_whitespace_list()
   end
 end
 
-vim.keymap.set("", "<leader>,", "<cmd>lua toggle_whitespace_list()", opts)
+vim.keymap.set("", "<leader>,", "<cmd>lua toggle_whitespace_list()<CR>", opts)
 
--- TODO: Fix in home manager
 -- telescope
--- local telescope = require('telescope')
--- vim.keymap.set('n', '<leader>o', telescope.find_files, {})
--- vim.keymap.set('n', '<leader>h', telescope.buffers, {})
--- vim.keymap.set('n', '<leader>s', telescope.live_grep, {})
+local telescope = require('telescope')
+vim.keymap.set("n", "<leader>o", "<cmd>lua require('telescope.builtin').find_files()<CR>", {})
+vim.keymap.set("n", "<leader>h", "<cmd>lua require('telescope.builtin').buffers()<CR>", {})
+vim.keymap.set("n", "<leader>s", "<cmd>lua require('telescope.builtin').live_grep()<CR>", {})
 

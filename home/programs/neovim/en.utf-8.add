@@ -41,3 +41,9 @@ impl
 unreceived
 enqueued
 tradeoff
+cmd
+lua
+whitespace
+Nop
+noremap
+lspconfig
