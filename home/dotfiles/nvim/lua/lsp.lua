@@ -38,7 +38,7 @@ cmp.setup({
 
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us', 'de' }
--- Symlink `~/.config/nvim/spell/en.utf-8.add` to point at `home/programs/neovim/en.utf-8.add` in this repo
+-- Symlink `~/.config/nvim/spell/en.utf-8.add` to point at `home/programs/neovim/en.utf-8.add` in this repo so we can check it in
 
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({

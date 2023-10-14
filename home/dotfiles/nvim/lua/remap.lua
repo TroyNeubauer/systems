@@ -9,8 +9,8 @@ vim.keymap.set("n", "<C-t>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left
 
 vim.keymap.set("n", "<leader>l", "<C-o>")
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>")
--- noremap <leader>n :bnext<CR>
--- noremap <leader>b :bprev<CR>
+vim.keymap.set("n", "<leader>n", ":bnext<CR>")
+vim.keymap.set("n", "<leader>b", ":bprev<CR>")
 
 -- close buffer
 vim.keymap.set("n", "<leader>e", ":bd<CR>")
@@ -26,6 +26,9 @@ vim.keymap.set("n", ")", "2")
 vim.keymap.set("n", "+", "4")
 vim.keymap.set("n", "]", "6")
 vim.keymap.set("n", "!", "8")
+
+-- Remap tab to end of line
+vim.keymap.set("n", "<Tab>", "$")
 
 -- disable arrow keys
 vim.keymap.set("i", "<Up>", "<Nop>")
