@@ -1,9 +1,0 @@
-{
-  pkgs,
-  home-manager,
-  ...
-}:
-
-{
-  
-}

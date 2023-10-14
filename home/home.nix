@@ -1,26 +1,22 @@
-{ username,
-  homeDirectory,
-  stateVersion,
+{ 
   pkgs,
-  nixpkgs,
-  home-manager,
   ...
 }:
 {
 imports =
   [
-    # (import ./dotfiles.nix { inherit username pkgs; })
-    (import ./programs.nix { inherit pkgs username; })
-    # ./programs.nix
-  ]
-  ++ nixpkgs.lib.optionals pkgs.stdenv.isDarwin [
-    (import ./mac.nix { inherit username pkgs home-manager; })
-  ]
-  ++ nixpkgs.lib.optionals pkgs.stdenv.isLinux [
-    (import ./linux.nix { inherit home-manager pkgs; })
+    (import ./programs.nix { inherit pkgs; })
   ];
+  # ++ nixpkgs.lib.optionals pkgs.stdenv.isDarwin [
+  #   (import ./mac.nix { inherit username pkgs home-manager; })
+  # ]
 
-  home = { inherit username homeDirectory stateVersion; };
+  home.username = "troy";
+  home.homeDirectory = "/home/troy";
+
+  home.stateVersion = "23.05";
+
+  # home = { inherit username homeDirectory stateVersion; };
 
   # TODO: fix
   # Install MacOS applications to the user environment if the targetPlatform is Darwin
@@ -32,6 +28,6 @@ imports =
   # };
   # in mkIf pkgs.stdenv.targetPlatform.isDarwin "${apps}/Applications";
 
+  # Let home manager manage itself
   programs.home-manager.enable = true;
-
 }
