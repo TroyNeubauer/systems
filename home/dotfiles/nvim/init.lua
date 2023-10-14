@@ -1,4 +1,5 @@
-require("remap")
-require("misc")
 require("lsp")
+require("line")
+require("misc")
+require("remap")
 
