@@ -15,6 +15,7 @@
     hunspell
     hunspellDicts.en_US
     libreoffice-qt
+    mold
     pavucontrol
     rustup
     gcc
@@ -28,6 +29,11 @@
     ".config/nvim/lua/misc.lua".source = ./dotfiles/nvim/lua/misc.lua;
     ".config/nvim/lua/remap.lua".source = ./dotfiles/nvim/lua/remap.lua;
     ".config/alacritty/alacritty.yml".source = ./dotfiles/alacritty/alacritty.yml;
+    ".cargo/config.toml".text = ''
+      [target.x86_64-unknown-linux-gnu]
+      linker = "clang"
+      rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"]
+    ''
   };
 
   programs = {
