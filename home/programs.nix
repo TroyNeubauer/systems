@@ -18,7 +18,7 @@
     mold
     pavucontrol
     rustup
-    gcc
+    clang
     unzip
   ];
 
