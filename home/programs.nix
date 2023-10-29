@@ -8,6 +8,7 @@
     eza
     fish
     delta
+    fd
     firefox
     fzf
     git
@@ -16,6 +17,7 @@
     hunspellDicts.en_US
     libreoffice-qt
     mold
+    obs-studio
     pavucontrol
     rustup
     clang

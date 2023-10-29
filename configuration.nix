@@ -105,7 +105,14 @@
   sound.enable = true;
   # TODO: switch to jack
   hardware.pulseaudio.enable = true;
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
+  };
 
   environment.shells = with pkgs; [ fish ];
 
