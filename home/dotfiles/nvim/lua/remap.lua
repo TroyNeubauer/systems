@@ -29,6 +29,7 @@ vim.keymap.set("n", "!", "8")
 
 -- Remap tab to end of line
 vim.keymap.set("n", "<Tab>", "$")
+vim.keymap.set("v", "<Tab>", "$")
 
 -- disable arrow keys
 vim.keymap.set("i", "<Up>", "<Nop>")

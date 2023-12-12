@@ -22,6 +22,7 @@
     rustup
     clang
     unzip
+    qbittorrent
   ];
 
   home.file = { 

@@ -149,6 +149,12 @@
     extraConfig = ''ListenAddress = 10.222.0.3'';
   };
 
+  services.plex = {
+    enable = true;
+    openFirewall = true;
+  };
+
+
   networking.wireguard.interfaces = {
     wg0 = {
       ips = [ "10.222.0.3/24" ];
