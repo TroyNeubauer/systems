@@ -31,7 +31,7 @@
     ".config/nvim/lua/lsp.lua".source = ./dotfiles/nvim/lua/lsp.lua;
     ".config/nvim/lua/misc.lua".source = ./dotfiles/nvim/lua/misc.lua;
     ".config/nvim/lua/remap.lua".source = ./dotfiles/nvim/lua/remap.lua;
-    ".config/alacritty/alacritty.yml".source = ./dotfiles/alacritty/alacritty.yml;
+    ".config/alacritty/alacritty.toml".source = ./dotfiles/alacritty/alacritty.toml;
     ".cargo/config.toml".text = ''
       [target.x86_64-unknown-linux-gnu]
       linker = "clang"
