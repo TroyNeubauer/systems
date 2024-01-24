@@ -3,13 +3,13 @@
   ...
 }:
 {
-imports =
+  imports =
   [
     (import ./programs.nix { inherit pkgs; })
   ];
   # ++ nixpkgs.lib.optionals pkgs.stdenv.isDarwin [
   #   (import ./mac.nix { inherit username pkgs home-manager; })
-  # ]
+  # ] 
 
   home.username = "troy";
   home.homeDirectory = "/home/troy";

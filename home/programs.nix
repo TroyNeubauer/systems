@@ -6,12 +6,17 @@
   home.packages = with pkgs; [
     alacritty
     eza
-    fish
+    clang
+    clang-tools
     delta
+    davinci-resolve
     fd
+    fish
     firefox
+    flameshot
     fzf
     git
+    jq
     htop
     hunspell
     hunspellDicts.en_US
@@ -19,8 +24,9 @@
     mold
     obs-studio
     pavucontrol
+    p7zip
     rustup
-    clang
+    tmux
     unzip
     qbittorrent
   ];

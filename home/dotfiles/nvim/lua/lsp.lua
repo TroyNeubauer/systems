@@ -84,13 +84,23 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.new_server({
+lsp.new_client({
   name = 'rust-analyzer',
   cmd = {'rust-analyzer'},
   filetypes = {'rust'},
   root_dir = function()
     local root = lsp.dir.find_first({'Cargo.lock'})
     print(root)
+    return root
+  end
+})
+
+lsp.new_client({
+  name = 'clangd',
+  cmd = {'clangd'},
+  filetypes = {'c', 'cpp', 'cc'},
+  root_dir = function()
+    local root = lsp.dir.find_first({'Makefile'})
     return root
   end
 })

@@ -18,6 +18,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
 
             home-manager.users.troy = import ./home/home.nix {
