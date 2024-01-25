@@ -11,16 +11,13 @@
   outputs = inputs@{ nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        config.allowUnfree = true;
+      mkSystem = name: system: extraConfig: nixpkgs.lib.nixosSystem {
         inherit system;
-      };
-    in {
-      nixosConfigurations = {
-        battlestation = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./configuration.nix
-            home-manager.nixosModules.home-manager
+        modules = [
+          ./configuration.nix
+          (./machines + "/${name}/configuration.nix")
+          (./machines + "/${name}/hardware-configuration.nix")
+          home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -33,8 +30,16 @@
                 # inherit (home) nixpkgs;
               };
             }
-          ];
-        };
+        ] ++ [ extraConfig ];
+      };
+
+      pkgs = import nixpkgs {
+        config.allowUnfree = true;
+        inherit system;
+      };
+    in {
+      nixosConfigurations = {
+        battlestation = mkSystem "battlestation" "x86_64-linux" {};
       };
     };
 }
