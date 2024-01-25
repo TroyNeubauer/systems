@@ -4,6 +4,7 @@
 # Workaround for the igc driver segfaulting due to motherboard power management on ASUS ROG strix B650E-F
   # See: https://www.reddit.com/r/buildapc/comments/xypn1m/network_card_intel_ethernet_controller_i225v_igc/
   boot.kernelParams = [ "pcie_port_pm=off" "pcie_aspm.policy=performance" ];
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "troy-battlestation";
 
