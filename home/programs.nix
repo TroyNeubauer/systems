@@ -14,6 +14,7 @@
     fish
     firefox
     flameshot
+    ffmpeg
     fzf
     git
     jq
@@ -26,6 +27,7 @@
     pavucontrol
     p7zip
     rustup
+    vlc
     tmux
     unzip
     qbittorrent

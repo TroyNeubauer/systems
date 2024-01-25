@@ -98,9 +98,16 @@
   };
 
   hardware.nvidia.nvidiaSettings = true;
-  hardware.opengl.enable = true;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      libGL
+    ];
+    setLdLibraryPath = true;
+  };
 
   sound.enable = true;
   # TODO: switch to jack
