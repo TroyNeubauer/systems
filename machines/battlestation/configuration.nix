@@ -23,7 +23,7 @@
       ips = [ "10.200.0.3/24" ];
       listenPort = 51821;
 
-      privateKeyFile = "/etc/secrets/wg-battlestation-private";
+      privateKeyFile = "/etc/secrets/wg-private";
 
       peers = [
         {

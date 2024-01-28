@@ -40,6 +40,7 @@
     in {
       nixosConfigurations = {
         battlestation = mkSystem "battlestation" "x86_64-linux" {};
+        hamono = mkSystem "hamono" "aarch64-linux" {};
       };
     };
 }
