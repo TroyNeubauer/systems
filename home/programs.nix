@@ -2,36 +2,7 @@
  pkgs,
   ...
 }: 
-{
-  home.packages = with pkgs; [
-    alacritty
-    eza
-    clang
-    clang-tools
-    delta
-    davinci-resolve
-    fd
-    fish
-    firefox
-    flameshot
-    ffmpeg
-    fzf
-    git
-    jq
-    htop
-    hunspell
-    hunspellDicts.en_US
-    libreoffice-qt
-    mold
-    obs-studio
-    pavucontrol
-    p7zip
-    rustup
-    vlc
-    tmux
-    unzip
-    qbittorrent
-  ];
+{ 
 
   home.file = { 
     ".config/nvim/init.lua".source = ./dotfiles/nvim/init.lua;
@@ -47,39 +18,7 @@
     '';
   };
 
-  programs = {
-    git = {
-      enable = true;
-      delta.enable = true;
-      userName = "Troy Neubauer";
-      userEmail = "troyneubauer@gmail.com";
-      extraConfig = {
-        color = {
-          ui = "auto";
-        };
-        commit = {
-	      # TODO: re-setup signing keys
-          # gpgsign = true;
-        };
-        core = {
-          excludesfile = "~/.gitignore";
-        };
-        github = {
-          user = "troyneubauer";
-        };
-        init = {
-          defaultBranch = "master";
-        };
-        pull = {
-          rebase = false;
-        };
-        push = {
-          default = "current";
-          autoSetupRemote = true;
-        };
-      };
-    };
-
+  programs = { 
     neovim = {
       enable = true;
       defaultEditor = true;
