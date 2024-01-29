@@ -1,10 +1,12 @@
 { config, pkgs, ... }:
 {
-  git = {
+  programs.git = {
     enable = true;
     delta.enable = true;
+
     userName = "Troy Neubauer";
     userEmail = "troyneubauer@gmail.com";
+
     extraConfig = {
       color = {
         ui = "auto";

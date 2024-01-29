@@ -8,7 +8,7 @@
     ../../features/i3.nix
   ];
 
-  home-manager.users.troy = import ../../../home-manager/troy/machines/battlestation.nixx;
+  home-manager.users.troy = import ../../../home/machines/battlestation.nix;
 
   networking.hostName = "battlestation";
 

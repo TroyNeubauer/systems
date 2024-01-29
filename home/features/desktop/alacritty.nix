@@ -1,7 +1,5 @@
 { lib, pkgs, config, ... }:
-let
-  inherit (config.colorScheme) colors;
-in {
+{
   programs.alacritty = {
     enable = true;
 
@@ -41,4 +39,4 @@ in {
 
     };
   };
-};
+}

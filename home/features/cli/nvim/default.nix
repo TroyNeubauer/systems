@@ -1,19 +1,38 @@
 { config, pkgs, ...}:
-
 {
-  programs.nvim = {
+  programs.neovim = {
     enable = true;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
 
+    extraPackages = with pkgs; [
+      fzf
+      rust-analyzer
+    ];
+
     plugins = with pkgs.vimPlugins; [
-      nvim-lspconfig
+      # nvim-lspconfig
+      vim-nix
       nvim-treesitter.withAllGrammars
-      plenary-nvim
-      gruvbox-material
-      mini-nvim
+      plenary-nvim 
+      gruvbox-nvim
+      luasnip
+
+      lsp-zero-nvim
+      nvim-cmp
+      cmp_luasnip
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      cmp-spell
+
+      lualine-nvim
+      lualine-lsp-progress
+      telescope-zf-native-nvim
+      telescope-nvim
     ];
   };
 

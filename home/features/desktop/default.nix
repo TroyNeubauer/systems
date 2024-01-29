@@ -6,7 +6,7 @@
 
   home.packages = with pkgs; [
     alacritty
-    davinci-resolve
+    pkgs.unstable.davinci-resolve
     firefox
     vlc
     flameshot

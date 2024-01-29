@@ -7,14 +7,6 @@
   ];
 
 
-    alacritty
-    davinci-resolve
-    firefox
-    flameshot
-    libreoffice-qt
-    obs-studio
-    qbittorrent
-
   home.packages = with pkgs; [
     eza
     clang
@@ -31,7 +23,6 @@
     mold
     p7zip
     rustup
-    vlc
     tmux
     unzip
   ];
