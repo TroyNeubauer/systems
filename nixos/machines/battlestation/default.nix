@@ -6,6 +6,7 @@
 
     ../../features/sound.nix
     ../../features/i3.nix
+    ../../features/virtualbox.nix
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;

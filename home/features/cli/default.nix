@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
+    ./cargo.nix
     ./fish.nix
     ./git.nix
     ./nvim
