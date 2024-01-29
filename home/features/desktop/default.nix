@@ -6,12 +6,14 @@
 
   home.packages = with pkgs; [
     alacritty
-    pkgs.unstable.davinci-resolve
     firefox
     vlc
     flameshot
+    nvtop
     libreoffice-qt
     obs-studio
     qbittorrent
+
+    pkgs.unstable.davinci-resolve
   ];
 }

@@ -24,6 +24,7 @@
     fish
     git
     htop
+    just
     python3
     ripgrep
     tree
