@@ -9,11 +9,11 @@
     firefox
     vlc
     flameshot
-    nvtop
+    # nvtop
     libreoffice-qt
     obs-studio
     qbittorrent
 
-    pkgs.unstable.davinci-resolve
+    # pkgs.unstable.davinci-resolve
   ];
 }

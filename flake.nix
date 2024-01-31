@@ -14,7 +14,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
+    apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -52,6 +55,9 @@
       nixosConfigurations = {
         # Main desktop built fall '23
         battlestation = mkNixos [ ./nixos/machines/battlestation ];
+        # 2023 m2 mac air
+        # TODO: fix name
+        hamono = mkNixos [ ./nixos/machines/hamono ];
       };
     };
 }

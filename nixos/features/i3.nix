@@ -23,7 +23,7 @@
         alacritty
         rofi
         i3status
-	    i3lock
+	i3lock
       ];
     };
   };

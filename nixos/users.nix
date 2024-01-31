@@ -12,7 +12,7 @@
   # we get the right path in the sudo config
   environment.systemPackages = [ pkgs.nixos-rebuild ];
   security.sudo.extraRules = [
-    {  users = [ "yusef" ];
+    {  users = [ "troy" ];
       commands = [
         { command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
           options = [ "NOPASSWD" "SETENV" ];

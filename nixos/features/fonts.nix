@@ -62,7 +62,7 @@ in {
       dejavu_fonts
       freefont_ttf
       liberation_ttf
-      emojione
+      # emojione
       open-fonts
       noto-fonts
       joypixels
