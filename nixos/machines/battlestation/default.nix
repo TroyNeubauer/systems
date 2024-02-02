@@ -5,6 +5,7 @@
     ../../common.nix
 
     ../../features/sound.nix
+    ../../features/bluetooth.nix
     ../../features/i3.nix
     ../../features/virtualbox.nix
   ];
@@ -51,9 +52,29 @@
 
   networking.firewall.allowedUDPPorts = [ 51820 ];
   networking.firewall.allowedTCPPorts = [ ];
-  networking.firewall.allowPing = true; 
+  networking.firewall.allowPing = true;
 
   networking.wireguard.interfaces = {
+    wg0 = {
+      ips = [ "10.222.0.3/24" ];
+      listenPort = 51820;
+
+      privateKeyFile = "/etc/secrets/wg-private";
+      # publicKey = "SPZtxJdmrFdmQWHimhoxRhOFXBoCMk2f34KMClFVkBU=";
+
+      peers = [
+        {
+          publicKey = "RghT14Gj3wFDWhtpYP+eC1xOSnWB2hKnpx23ZsEn3Gs=";
+
+          # Forward subnet
+          allowedIPs = [ "10.222.0.0/24" ];
+
+          endpoint = "45.86.230.190:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+
     mc = {
       ips = [ "10.200.0.3/24" ];
       listenPort = 51821;

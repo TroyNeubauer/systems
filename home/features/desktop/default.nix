@@ -11,6 +11,7 @@
     flameshot
     # nvtop
     libreoffice-qt
+    spotify
     obs-studio
     qbittorrent
 
