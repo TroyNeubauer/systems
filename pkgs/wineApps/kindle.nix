@@ -64,7 +64,7 @@ let
     exec = "${bin}/bin/kindle";
     icon = fetchurl {
       url = "https://m.media-amazon.com/images/I/51NEb1QMCHL.png";
-      sha256 = "0jk028paxfgxb3hwkn8igbzx7a7a3aqywz5v2spx920mqdc11bg1";
+      sha256 = "sha256-rYcYh9ejT7GrNsqwDYtURctlN+TCW8YeyRF07DXVt1s=";
     };
   };
 in symlinkJoin {

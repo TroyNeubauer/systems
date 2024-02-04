@@ -13,6 +13,8 @@
 
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
 
+  networking.firewall.allowPing = true;
+
   programs.fish.enable = true;
   services.openssh.enable = true;
 

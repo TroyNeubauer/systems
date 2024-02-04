@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     alacritty
+    discord
     firefox
     vlc
     flameshot

@@ -5,6 +5,7 @@
     ../../common.nix
 
     ../../features/sound.nix
+    ../../features/kindle
     ../../features/bluetooth.nix
     ../../features/i3.nix
     ../../features/virtualbox.nix
@@ -50,9 +51,10 @@
     openFirewall = true;
   };
 
-  networking.firewall.allowedUDPPorts = [ 51820 ];
-  networking.firewall.allowedTCPPorts = [ ];
-  networking.firewall.allowPing = true;
+  networking.firewall.enable = false;
+  # networking.firewall.allowedUDPPorts = [ 51820 ];
+  # networking.firewall.allowedTCPPorts = [ 4567 ];
+  # networking.firewall.allowPing = true;
 
   networking.wireguard.interfaces = {
     wg0 = {
