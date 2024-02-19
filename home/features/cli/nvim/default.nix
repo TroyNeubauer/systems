@@ -13,7 +13,6 @@
     ];
 
     plugins = with pkgs.vimPlugins; [
-      # nvim-lspconfig
       vim-nix
       nvim-treesitter.withAllGrammars
       plenary-nvim 
@@ -35,6 +34,12 @@
       telescope-nvim
     ];
   };
+
+  # We like to symlink `~/.config/nvim/spell/en.utf-8.add` to point to `./en.utf-8.add`,
+  # so that we can easily keep our additions in version control. Nix doesn't like this since its not pure.
+  # When setting up a new system run (assuming this project is in `~/nix/systems`:
+  # `rm -f ~/.config/nvim/spell/en.utf-8.add && ln -s ~/nix/systems/home/features/cli/nvim/en.utf-8.add ~/.config/nvim/spell/en.utf-8.add`
+  # TODO: do this automatically
 
   home.file = { 
     ".config/nvim/init.lua".source = ./init.lua;

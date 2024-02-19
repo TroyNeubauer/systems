@@ -7,7 +7,6 @@
     ./nvim
   ];
 
-
   home.packages = with pkgs; [
     eza
     clang
