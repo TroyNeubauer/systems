@@ -1,10 +1,15 @@
 { inputs, outputs, lib, pkgs, config, ... }:
-{
+let global = import ../features/desktop { config=config; pkgs=pkgs; lib=lib; };
+in {
   imports = [
-    ../global
-    ../features/desktop
-    # ../features/davinci-resolve
+    ../global 
   ];
 
- # programs.davinci-resolve.enable = true;
+  home.packages = with pkgs; lib.mkMerge [
+    global.packages
+    [
+      davinci-resolve
+      nvtop
+    ]
+  ];
 }

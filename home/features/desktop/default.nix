@@ -7,7 +7,7 @@
     ./obs-studio.nix
   ];
 
-  home.packages = with pkgs; [
+  packages = with pkgs; [
     discord
     vlc
     # nvtop

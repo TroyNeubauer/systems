@@ -1,7 +1,13 @@
 { inputs, outputs, lib, pkgs, config, ... }:
-{
+let global = import ../features/desktop { config=config; pkgs=pkgs; lib=lib; };
+in {
   imports = [
-    ../global
-    ../features/desktop
+    ../global 
+  ];
+
+  home.packages = with pkgs; lib.mkMerge [
+    global.packages
+    [
+    ]
   ];
 }
