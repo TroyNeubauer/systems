@@ -7,8 +7,8 @@
     libinput.enable = true;
 
     layout = "us";
-    xkbVariant = "dvp";
-    xkbOptions = "altwin:swap_alt_win";
+    xkb.variant = "dvp";
+    xkb.options = "altwin:swap_alt_win";
 
     desktopManager.xterm.enable = false;
 
@@ -23,7 +23,7 @@
         alacritty
         rofi
         i3status
-	i3lock
+        i3lock
       ];
     };
   };

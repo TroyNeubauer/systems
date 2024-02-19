@@ -14,6 +14,5 @@
     libreoffice-qt
     spotify
     qbittorrent
-    # pkgs.unstable.davinci-resolve
   ];
 }

@@ -8,7 +8,7 @@ in {
   home.packages = with pkgs; lib.mkMerge [
     global.packages
     [
-      davinci-resolve
+      pkgs.unstable.davinci-resolve
       nvtop
     ]
   ];
