@@ -8,6 +8,7 @@
   ];
 
   packages = with pkgs; [
+    firefox
     discord
     vlc
     # nvtop
