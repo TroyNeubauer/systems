@@ -9,12 +9,10 @@
 
   packages = with pkgs; [
     firefox
-    discord
     vlc
     # nvtop
     libreoffice-qt
     obs-studio
     qbittorrent
-    spotify
   ];
 }

@@ -9,6 +9,8 @@ in {
     global.packages
     [
       pkgs.unstable.davinci-resolve
+      discord
+      spotify
       nvtop
     ]
   ];

@@ -18,6 +18,10 @@
  
   networking.networkmanager.enable = true;
 
+  services.xserver.dpi = 240;
+
+  boot.kernelParams = [ "hid-apple.swap_fn_leftctrl=1" ];
+
   # services.openssh = {
   #   enable = true;
   #   settings.PasswordAuthentication = true;
