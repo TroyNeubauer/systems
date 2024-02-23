@@ -18,7 +18,13 @@
  
   networking.networkmanager.enable = true;
 
-  services.xserver.dpi = 180;
+  services.xserver.dpi = 140;
+
+  nixpkgs.overlays = [ inputs.apple-silicon.overlays.apple-silicon-overlay ];
+
+  hardware.asahi.useExperimentalGPUDriver = true;
+  hardware.asahi.experimentalGPUInstallMode = "replace";
+  hardware.asahi.setupAsahiSound = true;
 
   # services.openssh = {
   #   enable = true;
@@ -26,30 +32,31 @@
   #   # extraConfig = ''ListenAddress = 10.222.0.3'';
   # };
 
-  # networking.firewall.allowedUDPPorts = [ 51820 ];
-  # networking.firewall.allowedTCPPorts = [ ];
-  # networking.firewall.allowPing = true; 
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowPing = true; 
 
-  # networking.wireguard.interfaces = {
-  #   mc = {
-  #     ips = [ "10.200.0.3/24" ];
-  #     listenPort = 51821;
+  networking.wireguard.interfaces = {
+    troy = {
+      ips = [ "10.222.0.6/24" ];
+      listenPort = 51820;
 
-  #     privateKeyFile = "/etc/secrets/wg-private";
+      privateKeyFile = "/etc/secrets/wg-private";
+      # publicKey = "5oDw9s63pCADEHsMoL/MlYkJzzTGveuR+n+0CVWU8Ts=";
 
-  #     peers = [
-  #       {
-  #         publicKey = "Oe1FRAKz2OeNEYm/EQHLYHVg+FioGW79OmvlGEh/a28=";
+      peers = [
+        {
+          publicKey = "RghT14Gj3wFDWhtpYP+eC1xOSnWB2hKnpx23ZsEn3Gs=";
 
-  #         # Forward subnet
-  #         allowedIPs = [ "10.200.0.0/24" ];
+          # Forward subnet
+          allowedIPs = [ "10.222.0.0/24" ];
 
-  #         endpoint = "45.86.230.190:51821";
-  #         persistentKeepalive = 25;
-  #       }
-  #     ];
-  #   };
-  # };
+          endpoint = "45.86.230.190:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
   
   system.stateVersion = "23.05";
 }
