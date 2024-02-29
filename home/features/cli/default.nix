@@ -12,9 +12,11 @@
     clang
     clang-tools
     delta
+    gdb
     fd
     fish
     ffmpeg
+    lldb
     git
     jq
     htop

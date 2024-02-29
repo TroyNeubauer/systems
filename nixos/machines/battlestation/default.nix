@@ -7,7 +7,7 @@
     ../../features/sound.nix
     ../../features/kindle
     ../../features/bluetooth.nix
-    ../../features/i3.nix
+    ../../features/i3/default.nix
     ../../features/virtualbox.nix
   ];
 
