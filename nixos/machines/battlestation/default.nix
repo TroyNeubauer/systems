@@ -8,7 +8,6 @@
     ../../features/kindle
     ../../features/bluetooth.nix
     ../../features/i3/default.nix
-    ../../features/virtualbox.nix
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;
