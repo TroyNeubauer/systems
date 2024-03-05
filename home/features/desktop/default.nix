@@ -9,6 +9,7 @@
 
   packages = with pkgs; [
     firefox
+    flameshot
     vlc
     # nvtop
     libreoffice-qt
