@@ -8,20 +8,39 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d116c735-af52-40ab-947f-f8698e5b2291";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/d48890e1-f0be-4437-896e-fc765bbcc865";
+      fsType = "btrfs";
+      options = [ "subvol=root" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/45ba160e-5add-481d-b493-0458d218962a";
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/76bc8591-36eb-43f9-8d8d-e1f16e15e618";
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/d48890e1-f0be-4437-896e-fc765bbcc865";
+      fsType = "btrfs";
+      options = [ "subvol=home" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/d48890e1-f0be-4437-896e-fc765bbcc865";
+      fsType = "btrfs";
+      options = [ "subvol=nix" ];
+    };
+
+  fileSystems."/var/log" =
+    { device = "/dev/disk/by-uuid/d48890e1-f0be-4437-896e-fc765bbcc865";
+      fsType = "btrfs";
+      options = [ "subvol=log" ];
+    };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B9EB-A995";
+    { device = "/dev/disk/by-uuid/C3B5-3185";
       fsType = "vfat";
     };
 
