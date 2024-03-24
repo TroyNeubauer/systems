@@ -42,6 +42,9 @@ vim.keymap.set("n", "<Down>", "<Nop>")
 vim.keymap.set("n", "<Left>", "<Nop>")
 vim.keymap.set("n", "<Right>", "<Nop>")
 
+vim.keymap.set("n", ",s", "<Plug>(GitGutterNextHunk)", opts)
+vim.keymap.set("n", ",l", "<Plug>(GitGuttePrevHunk)", opts)
+
 -- use kk and jj to perform escape
 vim.keymap.set("i", "kk", "<Esc>")
 vim.keymap.set("i", "jj", "<Esc>:w<CR>")
