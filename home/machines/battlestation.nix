@@ -11,7 +11,7 @@ in {
       pkgs.unstable.davinci-resolve
       discord
       spotify
-      nvtop
+      nvtopPackages.full
     ]
   ];
 }
