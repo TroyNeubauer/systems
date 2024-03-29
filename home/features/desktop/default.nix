@@ -13,7 +13,6 @@
     vlc
     # nvtop
     libreoffice-qt
-    obs-studio
     qbittorrent
   ];
 }

@@ -8,6 +8,11 @@
     ../../features/kindle
     ../../features/bluetooth.nix
     ../../features/i3/default.nix
+    ../../features/virtualbox.nix
+  ];
+
+  environment.systemPackages = with pkgs; [
+    (pkgs.wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;
@@ -61,7 +66,7 @@
       listenPort = 51820;
 
       privateKeyFile = "/etc/secrets/wg-private";
-      # publicKey = "SPZtxJdmrFdmQWHimhoxRhOFXBoCMk2f34KMClFVkBU=";
+      # publicKey = "SPZtxJdmrFdmQWHimhoFXBoCMk2f34KMClFVkBU=";
 
       peers = [
         {
@@ -73,25 +78,16 @@
           endpoint = "45.86.230.190:51820";
           persistentKeepalive = 25;
         }
-      ];
-    };
 
-    mc = {
-      ips = [ "10.200.0.3/24" ];
-      listenPort = 51821;
+        # {
+        #   publicKey = "yrcEn4vUE5Tz7iLwjcsqCOz1HU0MH30YZBb0R79gPDo=";
 
-      privateKeyFile = "/etc/secrets/wg-private";
+        #   # Forward subnet
+        #   allowedIPs = [ "10.222.0.7/32" ];
 
-      peers = [
-        {
-          publicKey = "Oe1FRAKz2OeNEYm/EQHLYHVg+FioGW79OmvlGEh/a28=";
-
-          # Forward subnet
-          allowedIPs = [ "10.200.0.0/24" ];
-
-          endpoint = "45.86.230.190:51821";
-          persistentKeepalive = 25;
-        }
+        #   endpoint = "10.222.0.3:51820";
+        #   persistentKeepalive = 25;
+        # }
       ];
     };
   };
