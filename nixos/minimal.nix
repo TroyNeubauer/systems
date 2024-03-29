@@ -16,9 +16,12 @@
   networking.firewall.allowPing = true;
 
   programs.fish.enable = true;
-  services.openssh.enable = true;
-
   environment.shells = with pkgs; [ fish ];
+
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+  };
 
   environment.systemPackages = with pkgs; [
     curl

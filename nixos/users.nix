@@ -3,8 +3,14 @@
   users.users.troy = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "disk" "audio" "video" "docker" "systemd-journal" ];
-
     shell = pkgs.fish; 
+
+    openssh.authorizedKeys.keys  = [
+      # Battlestation
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOleNd3KStS0Heft6hWM2sxQLpUr0h7yWllS7IUE9Fiu troyneubauer@gmail.com"
+      # Macos m2 air 2023
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKr/YfzSgA0/YCGvf8qsHUAtXZSMK/Lnh9C+qkn+pNW/ troyneubauer"
+    ];
   };
 
   # allow running nixos-rebuild as root without a password.

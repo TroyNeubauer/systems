@@ -56,8 +56,9 @@
         # Main desktop built fall '23
         battlestation = mkNixos [ ./nixos/machines/battlestation ];
         # 2023 m2 mac air
-        # TODO: fix name
         hamono = mkNixos [ ./nixos/machines/hamono ];
+        # BlueVPS tneubauer.xyz
+        tneubauer_xyz = mkNixos [ ./nixos/machines/tneubauer_xyz ];
       };
     };
 }
