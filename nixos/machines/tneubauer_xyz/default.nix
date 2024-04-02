@@ -10,7 +10,7 @@
   boot.loader.grub.efiSupport = false;
   boot.loader.grub.device = "/dev/vda";
 
-  networking.hostName = "tneubauer-xyz"; 
+  networking.hostName = "tneubauerxyz"; 
   networking.networkmanager.enable = true;
 
   environment.systemPackages = with pkgs; [
