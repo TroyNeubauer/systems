@@ -44,6 +44,7 @@
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = true;
+    extraConfig = ''ListenAddress = 10.222.0.1'';
   };
 
   networking.firewall.enable = false;
