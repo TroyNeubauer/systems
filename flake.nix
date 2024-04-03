@@ -53,12 +53,19 @@
       );
 
       nixosConfigurations = {
-        # Main desktop built fall '23
+        # Main desktop (AMD 5950X) built fall '23
         battlestation = mkNixos [ ./nixos/machines/battlestation ];
         # 2023 m2 mac air
         hamono = mkNixos [ ./nixos/machines/hamono ];
-        # BlueVPS tneubauer.xyz
+        # BlueVPS tneubauer.xyz host
         tneubauerxyz = mkNixos [ ./nixos/machines/tneubauerxyz ];
+      };
+      homeConfigurations = {
+        "battlestation" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./home/machines/battlestation.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
     };
 }
