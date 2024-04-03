@@ -25,7 +25,6 @@
   services.nginx.enable = true;
 
   services.nginx.virtualHosts."tneubauer.xyz" = {
-    addSSL = true;
     forceSSL = true;
     enableACME = true;
     root = "/www/troy/public";
@@ -35,7 +34,6 @@
   ];
 
   services.nginx.virtualHosts."jcaiola.com" = {
-    addSSL = true;
     forceSSL = true;
     enableACME = true;
     root = "/www/jack/public";
