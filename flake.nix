@@ -58,7 +58,7 @@
         # 2023 m2 mac air
         hamono = mkNixos [ ./nixos/machines/hamono ];
         # BlueVPS tneubauer.xyz
-        tneubauerxyz = mkNixos [ ./nixos/machines/tneubauer_xyz ];
+        tneubauerxyz = mkNixos [ ./nixos/machines/tneubauerxyz ];
       };
     };
 }

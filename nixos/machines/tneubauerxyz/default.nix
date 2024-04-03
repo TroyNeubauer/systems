@@ -21,7 +21,7 @@
     man
   ];
 
-  # Server hosts
+  # ========== Server hosts ==========
   services.nginx.enable = true;
 
   services.nginx.virtualHosts."tneubauer.xyz" = {
@@ -32,6 +32,11 @@
   security.acme.certs."tneubauer.xyz".extraDomainNames = [
     "www.tneubauer.xyz"
   ];
+  virtualHosts."www.tneubauer.xyz" = {
+    enableACME = true;
+    forceSSL = true;
+    globalRedirect = "tneubauer.xyz";
+  };
 
   services.nginx.virtualHosts."jcaiola.com" = {
     forceSSL = true;
@@ -41,13 +46,18 @@
   security.acme.certs."jcaiola.com".extraDomainNames = [
     "www.jcaiola.com"
   ];
+  virtualHosts."www.jcaiola.com" = {
+    enableACME = true;
+    forceSSL = true;
+    globalRedirect = "jcaiola.com";
+  };
 
   security.acme = {
     acceptTerms = true;
     defaults.email = "neubauertroy@gmail.com";
   };
 
-  # SSH + Wireguard
+  # ========== SSH + Wireguard ==========
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = true;
@@ -86,7 +96,7 @@
           allowedIPs = [ "10.222.0.5/32" ];
         }
         {
-          ## Macbook air m2 2023 asahi
+          ## Hamono (Macbook air m2 2023 asahi)
           publicKey = "5oDw9s63pCADEHsMoL/MlYkJzzTGveuR+n+0CVWU8Ts=";
           allowedIPs = [ "10.222.0.6/32" ];
         }
