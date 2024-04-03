@@ -22,39 +22,43 @@
   ];
 
   # ========== Server hosts ==========
-  services.nginx.enable = true;
+  services.nginx = {
+    enable = true;
+  
+    virtualHosts."tneubauer.xyz" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/www/troy/public";
+    };
+    virtualHosts."www.tneubauer.xyz" = {
+      enableACME = true;
+      forceSSL = true;
+      globalRedirect = "tneubauer.xyz";
+    };
+  
+    virtualHosts."jcaiola.com" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/www/jack/public";
+    };
 
-  services.nginx.virtualHosts."tneubauer.xyz" = {
-    forceSSL = true;
-    enableACME = true;
-    root = "/www/troy/public";
-  };
-  security.acme.certs."tneubauer.xyz".extraDomainNames = [
-    "www.tneubauer.xyz"
-  ];
-  virtualHosts."www.tneubauer.xyz" = {
-    enableACME = true;
-    forceSSL = true;
-    globalRedirect = "tneubauer.xyz";
-  };
-
-  services.nginx.virtualHosts."jcaiola.com" = {
-    forceSSL = true;
-    enableACME = true;
-    root = "/www/jack/public";
-  };
-  security.acme.certs."jcaiola.com".extraDomainNames = [
-    "www.jcaiola.com"
-  ];
-  virtualHosts."www.jcaiola.com" = {
-    enableACME = true;
-    forceSSL = true;
-    globalRedirect = "jcaiola.com";
+    virtualHosts."www.jcaiola.com" = {
+      enableACME = true;
+      forceSSL = true;
+      globalRedirect = "jcaiola.com";
+    };
   };
 
   security.acme = {
     acceptTerms = true;
     defaults.email = "neubauertroy@gmail.com";
+
+    certs."tneubauer.xyz".extraDomainNames = [
+      "www.tneubauer.xyz"
+    ];
+    certs."jcaiola.com".extraDomainNames = [
+      "www.jcaiola.com"
+    ];
   };
 
   # ========== SSH + Wireguard ==========
