@@ -26,14 +26,23 @@
 
   services.nginx.virtualHosts."tneubauer.xyz" = {
     addSSL = true;
+    forceSSL = true;
     enableACME = true;
     root = "/www/troy/public";
   };
+  security.acme.certs."tneubauer.xyz".extraDomainNames = [
+    "www.tneubauer.xyz"
+  ];
+
   services.nginx.virtualHosts."jcaiola.com" = {
     addSSL = true;
+    forceSSL = true;
     enableACME = true;
     root = "/www/jack/public";
   };
+  security.acme.certs."jcaiola.com".extraDomainNames = [
+    "www.jcaiola.com"
+  ];
 
   security.acme = {
     acceptTerms = true;
