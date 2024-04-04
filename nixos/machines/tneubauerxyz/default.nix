@@ -2,7 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../common.nix
+    ../../minimal.nix
   ];
 
   boot.loader.grub.enable = true;
@@ -12,14 +12,6 @@
 
   networking.hostName = "tneubauerxyz"; 
   networking.networkmanager.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    vim
-    tmux
-    curl
-    wget
-    man
-  ];
 
   # ========== Server hosts ==========
   services.nginx = {
@@ -103,6 +95,11 @@
           ## Hamono (Macbook air m2 2023 asahi)
           publicKey = "5oDw9s63pCADEHsMoL/MlYkJzzTGveuR+n+0CVWU8Ts=";
           allowedIPs = [ "10.222.0.6/32" ];
+        }
+        {
+          ## Battlestation windows
+          publicKey = "yXCI+SBuoxFLG3Qa9FnGunA60VzwOwDUTQlxYRCh2DE=";
+          allowedIPs = [ "10.222.0.8/32" ];
         }
         {
           ## Jack's SUPERBRICK VM
