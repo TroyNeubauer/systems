@@ -26,11 +26,11 @@
   hardware.asahi.experimentalGPUInstallMode = "replace";
   hardware.asahi.setupAsahiSound = true;
 
-  # services.openssh = {
-  #   enable = true;
-  #   settings.PasswordAuthentication = true;
-  #   # extraConfig = ''ListenAddress = 10.222.0.3'';
-  # };
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = true;
+    extraConfig = ''ListenAddress = 10.222.0.6'';
+  };
 
   networking.firewall.allowedUDPPorts = [ 51820 ];
   networking.firewall.allowedTCPPorts = [ ];
