@@ -22,13 +22,13 @@
     recommendedProxySettings = true;
     clientMaxBodySize = "500m";
   
-    virtualHosts."photos.tneubauer.xyz" = {
-      # forceSSL = true;
-      # enableACME = true;
+    virtualHosts."tneubauer.xyz" = {
+      forceSSL = true;
+      enableACME = true;
       http2 = true;
       locations."/" = {
         proxyPass = "http://10.222.0.3:2342";
-        proxyWebsockets = true;
+        # proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header Host $host;
@@ -65,10 +65,10 @@
     acceptTerms = true;
     defaults.email = "neubauertroy@gmail.com";
 
-    # certs."tneubauer.xyz".extraDomainNames = [
-    #   "www.tneubauer.xyz"
-    #   "photos.tneubauer.xyz"
-    # ];
+    certs."tneubauer.xyz".extraDomainNames = [
+      "www.tneubauer.xyz"
+      # "photos.tneubauer.xyz"
+    ];
     certs."jcaiola.com".extraDomainNames = [
       "www.jcaiola.com"
     ];
