@@ -20,7 +20,6 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
-    proxyHeadersHashMaxSize = 512;
     clientMaxBodySize = "500m";
   
     virtualHosts."photos.tneubauer.xyz" = {
