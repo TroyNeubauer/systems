@@ -28,8 +28,8 @@
       root = "/www/troy/public";
     };
     virtualHosts."photos.tneubauer.xyz" = {
-      forceSSL = true;
-      enableACME = true;
+      # forceSSL = true;
+      # enableACME = true;
       http2 = true;
       locations."/" = {
         proxyPass = "http://10.222.0.3:2342";
