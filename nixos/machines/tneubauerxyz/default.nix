@@ -65,10 +65,10 @@
     acceptTerms = true;
     defaults.email = "neubauertroy@gmail.com";
 
-    certs."tneubauer.xyz".extraDomainNames = [
-      "www.tneubauer.xyz"
-      # "photos.tneubauer.xyz"
-    ];
+    # certs."tneubauer.xyz".extraDomainNames = [
+    #   "www.tneubauer.xyz"
+    #   # "photos.tneubauer.xyz"
+    # ];
     certs."jcaiola.com".extraDomainNames = [
       "www.jcaiola.com"
     ];
