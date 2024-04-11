@@ -16,11 +16,31 @@
   # ========== Server hosts ==========
   services.nginx = {
     enable = true;
+    recommendedTlsSettings = true;
+    recommendedOptimisation = true;
+    recommendedGzipSettings = true;
+    recommendedProxySettings = true;
+    clientMaxBodySize = "500m";
   
     virtualHosts."tneubauer.xyz" = {
       forceSSL = true;
       enableACME = true;
       root = "/www/troy/public";
+    };
+    virtualHosts."photos.tneubauer.xyz" = {
+      forceSSL = true;
+      enableACME = true;
+      http2 = true;
+      locations."/" = {
+        proxyPass = "http://10.222.0.3:2342";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $host;
+          proxy_buffering off;
+          proxy_http_version 1.1;
+        '';
+      };
     };
     virtualHosts."www.tneubauer.xyz" = {
       enableACME = true;

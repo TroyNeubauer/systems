@@ -8,6 +8,7 @@
   ];
 
   packages = with pkgs; [
+    gimp
     firefox
     flameshot
     vlc
