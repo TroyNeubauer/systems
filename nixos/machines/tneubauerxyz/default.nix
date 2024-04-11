@@ -66,7 +66,6 @@
 
     certs."tneubauer.xyz".extraDomainNames = [
       "www.tneubauer.xyz"
-      "www.photos.tneubauer.xyz"
       "photos.tneubauer.xyz"
     ];
     certs."jcaiola.com".extraDomainNames = [
