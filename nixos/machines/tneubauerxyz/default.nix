@@ -41,11 +41,11 @@
     #   enableACME = true;
     #   root = "/www/troy/public";
     # };
-    virtualHosts."www.tneubauer.xyz" = {
-      enableACME = true;
-      forceSSL = true;
-      globalRedirect = "tneubauer.xyz";
-    };
+    # virtualHosts."www.tneubauer.xyz" = {
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   globalRedirect = "tneubauer.xyz";
+    # };
   
     virtualHosts."jcaiola.com" = {
       forceSSL = true;
@@ -64,10 +64,10 @@
     acceptTerms = true;
     defaults.email = "neubauertroy@gmail.com";
 
-    certs."tneubauer.xyz".extraDomainNames = [
-      "www.tneubauer.xyz"
-      "photos.tneubauer.xyz"
-    ];
+    # certs."tneubauer.xyz".extraDomainNames = [
+    #   "www.tneubauer.xyz"
+    #   "photos.tneubauer.xyz"
+    # ];
     certs."jcaiola.com".extraDomainNames = [
       "www.jcaiola.com"
     ];
