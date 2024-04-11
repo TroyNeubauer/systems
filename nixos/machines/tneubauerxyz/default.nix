@@ -16,37 +16,17 @@
   # ========== Server hosts ==========
   services.nginx = {
     enable = true;
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedGzipSettings = true;
-    # recommendedProxySettings = true;
-    clientMaxBodySize = "500m";
   
     virtualHosts."tneubauer.xyz" = {
-      # forceSSL = true;
-      # enableACME = true;
-      # http2 = true;
-      locations."/" = {
-        proxyPass = "http://10.222.0.3:2342";
-        # proxyWebsockets = true;
-        extraConfig = ''
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header Host $host;
-          proxy_buffering off;
-          types_hash_bucket_size 128;
-        '';
-      };
+      forceSSL = true;
+      enableACME = true;
+      root = "/www/troy/public";
     };
-    # virtualHosts."tneubauer.xyz" = {
-    #   forceSSL = true;
-    #   enableACME = true;
-    #   root = "/www/troy/public";
-    # };
-    # virtualHosts."www.tneubauer.xyz" = {
-    #   enableACME = true;
-    #   forceSSL = true;
-    #   globalRedirect = "tneubauer.xyz";
-    # };
+    virtualHosts."www.tneubauer.xyz" = {
+      enableACME = true;
+      forceSSL = true;
+      globalRedirect = "tneubauer.xyz";
+    };
   
     virtualHosts."jcaiola.com" = {
       forceSSL = true;
@@ -65,10 +45,9 @@
     acceptTerms = true;
     defaults.email = "neubauertroy@gmail.com";
 
-    # certs."tneubauer.xyz".extraDomainNames = [
-    #   "www.tneubauer.xyz"
-    #   # "photos.tneubauer.xyz"
-    # ];
+    certs."tneubauer.xyz".extraDomainNames = [
+      "www.tneubauer.xyz"
+    ];
     certs."jcaiola.com".extraDomainNames = [
       "www.jcaiola.com"
     ];
