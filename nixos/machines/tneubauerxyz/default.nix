@@ -20,13 +20,9 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
+    proxyHeadersHashMaxSize = 512;
     clientMaxBodySize = "500m";
   
-    virtualHosts."tneubauer.xyz" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/www/troy/public";
-    };
     virtualHosts."photos.tneubauer.xyz" = {
       # forceSSL = true;
       # enableACME = true;
@@ -40,6 +36,11 @@
           proxy_buffering off;
         '';
       };
+    };
+    virtualHosts."tneubauer.xyz" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/www/troy/public";
     };
     virtualHosts."www.tneubauer.xyz" = {
       enableACME = true;
