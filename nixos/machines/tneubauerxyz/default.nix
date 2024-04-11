@@ -36,11 +36,11 @@
         '';
       };
     };
-    virtualHosts."tneubauer.xyz" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/www/troy/public";
-    };
+    # virtualHosts."tneubauer.xyz" = {
+    #   forceSSL = true;
+    #   enableACME = true;
+    #   root = "/www/troy/public";
+    # };
     virtualHosts."www.tneubauer.xyz" = {
       enableACME = true;
       forceSSL = true;
