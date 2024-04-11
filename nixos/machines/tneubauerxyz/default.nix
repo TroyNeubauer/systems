@@ -19,13 +19,13 @@
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
-    recommendedProxySettings = true;
+    # recommendedProxySettings = true;
     clientMaxBodySize = "500m";
   
     virtualHosts."tneubauer.xyz" = {
-      forceSSL = true;
-      enableACME = true;
-      http2 = true;
+      # forceSSL = true;
+      # enableACME = true;
+      # http2 = true;
       locations."/" = {
         proxyPass = "http://10.222.0.3:2342";
         # proxyWebsockets = true;

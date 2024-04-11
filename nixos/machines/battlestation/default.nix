@@ -68,7 +68,7 @@
       PHOTOPRISM_DATABASE_NAME = "photoprism";
       PHOTOPRISM_DATABASE_SERVER = "/run/mysqld/mysqld.sock";
       PHOTOPRISM_DATABASE_USER = "photoprism";
-      PHOTOPRISM_SITE_URL = "http://photos.tneubauer.xyz";
+      PHOTOPRISM_SITE_URL = "http://tneubauer.xyz";
       PHOTOPRISM_SITE_TITLE = "My PhotoPrism";
     };
   };
