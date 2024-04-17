@@ -13,6 +13,7 @@
 
   environment.systemPackages = with pkgs; [
     (pkgs.wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
+    linuxKernel.packages.linux_zen.perf
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;
