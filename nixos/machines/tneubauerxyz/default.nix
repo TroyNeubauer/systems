@@ -81,15 +81,16 @@
           publicKey = "SPZtxJdmrFdmQWHimhoxRhOFXBoCMk2f34KMClFVkBU=";
           allowedIPs = [ "10.222.0.3/32" ];
         }
-        {
-          ## Laptop
-          publicKey = "ll9vveK+8FAIg7vQNqIop34P7nYvjtwo6W5MnBUNJyU=";
-          allowedIPs = [ "10.222.0.4/32" ];
-        }
+        # TODO: laptop is bricked
+        # {
+        #   ## Laptop
+        #   publicKey = "ll9vveK+8FAIg7vQNqIop34P7nYvjtwo6W5MnBUNJyU=";
+        #   allowedIPs = [ "10.222.0.4/32" ];
+        # }
         {
           ## Macbook air m2 2023 macos
-          publicKey = "hMF6qHQYPKSHwWOmdz20Uf5M1Ns7JgAO8D5ntyqJ9Q0=";
-          allowedIPs = [ "10.222.0.5/32" ];
+          publicKey = "yz0cic9fQxtHzgDRhrC/9I5Cl9p6MjGEdlY2HX/OyVk=";
+          allowedIPs = [ "10.222.0.4/32" ];
         }
         {
           ## Hamono (Macbook air m2 2023 asahi)
