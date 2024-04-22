@@ -9,6 +9,7 @@ in {
     global.packages
     [
       pkgs.unstable.davinci-resolve
+      pkgs.local-pkgs.webcam-segmentation
       discord
       spotify
       nvtopPackages.full
