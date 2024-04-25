@@ -43,6 +43,9 @@
     setLdLibraryPath = true;
   };
 
+  # VNC
+  services.xrdp.enable = true;
+
   services.xserver.videoDrivers = [ "nvidia" ];
 
   services.openssh = {

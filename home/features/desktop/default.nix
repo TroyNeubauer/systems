@@ -8,6 +8,7 @@
   ];
 
   packages = with pkgs; [
+    audacity
     gimp
     firefox
     flameshot
