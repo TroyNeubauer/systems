@@ -28,6 +28,8 @@
     file
     fish
     git
+    gnumake
+    gcc
     htop
     just
     python3
