@@ -68,3 +68,10 @@ vim.keymap.set("n", "<leader>o", "<cmd>lua require('telescope.builtin').find_fil
 vim.keymap.set("n", "<leader>h", "<cmd>lua require('telescope.builtin').buffers()<CR>", {})
 vim.keymap.set("n", "<leader>s", "<cmd>lua require('telescope.builtin').live_grep()<CR>", {})
 
+vim.keymap.set("v", "<leader>c", "\"+y")
+vim.keymap.set("n", "<leader>c", "\"+y")
+vim.keymap.set("n", "<leader>C", "\"+yg_")
+
+vim.keymap.set("n", "<leader>p", "\"+p")
+vim.keymap.set("v", "<leader>p", "\"+p")
+

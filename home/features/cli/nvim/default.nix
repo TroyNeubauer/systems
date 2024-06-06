@@ -16,6 +16,7 @@ in {
     extraPackages = with pkgs; [
       fzf
       rust-analyzer
+      xsel
     ];
 
     plugins = with pkgs.vimPlugins; [

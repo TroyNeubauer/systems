@@ -8,7 +8,7 @@ in {
   home.packages = with pkgs; lib.mkMerge [
     global.packages
     [
-      pkgs.unstable.davinci-resolve
+      pkgs.unstable.davinci-resolve-studio
       pkgs.local-pkgs.webcam-segmentation
       discord
       spotify

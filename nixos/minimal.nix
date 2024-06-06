@@ -32,6 +32,7 @@
     gcc
     htop
     just
+    nasm
     python3
     ripgrep
     tree

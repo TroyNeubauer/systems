@@ -110,3 +110,6 @@ spawnable
 config
 alacritty
 nixpkgs
+subslice
+UnsafeCell
+bootloader
