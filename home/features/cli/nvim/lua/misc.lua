@@ -33,7 +33,7 @@ require("gruvbox").setup({
 vim.cmd("colorscheme gruvbox")
 
 -- Permanent undo
-vim.o.undodir = "/home/troy/.vimdid"
+vim.o.undodir = os.getenv("HOME").."/.vimdid"
 vim.o.undofile = true
 
 -- Highlight on search

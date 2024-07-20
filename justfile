@@ -21,6 +21,11 @@ trace target_host=hostname: (build target_host "--show-trace")
 switch *flags="":
   sudo nixos-rebuild switch --flake .#{{hostname}} {{rebuild_flags}} {{flags}}
 
+[macos]
+switch *flags="":
+  nix run nix-darwin -- switch --flake .#{{hostname}} {{rebuild_flags}} {{flags}}
+
+
 # Update flake inputs to their latest revisions
 update:
   nix flake update
