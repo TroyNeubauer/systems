@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
-{
+  let is_linux = pkgs.stdenv.isLinux;
+in {
   imports = [
     ./cargo.nix
     ./fish.nix
@@ -12,7 +13,8 @@
     clang
     clang-tools
     delta
-    gdb
+    # Not supported on m2, need to dynamically add here
+    # [if is_linux then [gdb] else []]
     fd
     fish
     ffmpeg
