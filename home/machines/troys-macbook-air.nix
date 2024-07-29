@@ -1,17 +1,13 @@
 { inputs, outputs, lib, pkgs, config, ... }:
-# let cli = import ../features/cli { config=config; pkgs=pkgs; lib=lib; };
-{
+  # let cli = import ../features/cli { config=config; pkgs=pkgs; lib=lib; };
+  {
   imports = [
     ../features/cli
   ];
 
-#  home.packages = with pkgs; lib.mkMerge [
-#    cli.packages
-#    [
-#      # discord
-#      # spotify
-#    ]
-#  ];
+  home.packages = with pkgs; [
+    sdrpp
+  ];
 
   home.stateVersion = "23.05"; # Please read the comment before changing.
 

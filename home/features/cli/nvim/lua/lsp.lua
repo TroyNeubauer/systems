@@ -106,3 +106,13 @@ lsp.new_client({
 
 lsp.setup()
 
+lsp.new_client({
+  name = 'kotlin-language-server',
+  cmd = {'kotlin-language-server'},
+  filetypes = {'rust'},
+  root_dir = function()
+    local root = lsp.dir.find_first({'gradlew'})
+    print(root)
+    return root
+  end
+})
