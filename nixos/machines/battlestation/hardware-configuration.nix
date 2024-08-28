@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [
@@ -45,6 +45,15 @@
     { device = "/dev/disk/by-uuid/C3B5-3185";
       fsType = "vfat";
     };
+
+  fileSystems."/disks/2024_8tb" =
+    { device = "/dev/mapper/2024_8tb";
+      fsType = "ext4";
+    };
+
+  environment.etc."crypttab".text = ''
+    2024_8tb /dev/disk/by-uuid/20ed299e-7521-4a49-ba96-2b3bd539bb48 /etc/secrets/2024_8tb.key
+  '';
 
   swapDevices = [ ];
 

@@ -8,7 +8,6 @@
     ../../features/kindle
     ../../features/bluetooth.nix
     ../../features/i3/default.nix
-    ../../features/virtualbox.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -56,10 +55,10 @@
     extraConfig = ''ListenAddress = 10.222.0.3'';
   };
 
-  services.plex = {
-    enable = true;
-    openFirewall = true;
-  };
+  # services.plex = {
+  #   enable = true;
+  #   openFirewall = true;
+  # };
 
   services.photoprism = {
     enable = true;

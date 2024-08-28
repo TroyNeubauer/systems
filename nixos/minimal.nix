@@ -9,7 +9,7 @@
     ./users.nix
   ];
 
-  time.timeZone = lib.mkDefault "America/New_York";
+  time.timeZone = lib.mkDefault "America/Los_angeles";
 
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
 

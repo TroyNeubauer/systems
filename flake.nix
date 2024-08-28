@@ -4,7 +4,7 @@
   # https://github.com/Misterio77/nix-config/tree/main
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
@@ -43,20 +43,13 @@
       });
     in
     rec {
-      #nixosModules = import ./modules/nixos;
-      # homeManagerModules = import ./modules/home-manager;
-      #templates = import ./templates;
-
       overlays = import ./overlays { inherit inputs outputs; };
-
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-
       # Devshell for bootstrapping
       devShells = forEachSystem (system:
         let pkgs = nixpkgs.legacyPackages.${system};
         in import ./shell.nix { inherit pkgs; }
       );
-
       nixosConfigurations = {
         # Main desktop (AMD 5950X) built fall '23
         battlestation = mkNixos [ ./nixos/machines/battlestation ];
