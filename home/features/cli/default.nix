@@ -28,6 +28,7 @@ in {
     p7zip
     rustup
     tmux
+    tree
     unzip
   ];
 
