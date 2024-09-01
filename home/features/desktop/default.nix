@@ -1,5 +1,12 @@
 { config, pkgs, lib, ... }:
-{
+let
+  alacritty_themes = pkgs.fetchFromGitHub {
+    owner = "alacritty";
+    repo = "alacritty-theme";
+    rev = "c2369cd1ec555c8dba7ea39bd059b7c036f1e637";
+    hash = "sha256-eCJ9CpKoBTaA684vDJ6p8IB2AhvIBfrrKuyoKCr1BJs=";
+  };
+in {
   packages = with pkgs; [
     audacity
     gimp

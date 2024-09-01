@@ -1,11 +1,5 @@
 { config, pkgs, ...}:
-let alacritty_themes = pkgs.fetchFromGitHub {
-  owner = "alacritty";
-  repo = "alacritty-theme";
-  rev = "c2369cd1ec555c8dba7ea39bd059b7c036f1e637";
-  hash = "sha256-eCJ9CpKoBTaA684vDJ6p8IB2AhvIBfrrKuyoKCr1BJs=";
-};
-in {
+{
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -49,6 +43,7 @@ in {
   # When setting up a new system run (assuming this project is in `~/nix/systems`:
   # `rm -f ~/.config/nvim/spell/en.utf-8.add && ln -s ~/nix/systems/home/features/cli/nvim/en.utf-8.add ~/.config/nvim/spell/en.utf-8.add`
   # TODO: do this automatically
+  # Systemd service may work, but then we have to assume the user always clones this repo into ~/nix/systems, akward, so punting for now
 
   home.file.".config/nvim/init.lua".source = ./init.lua;
   home.file.".config/nvim/lua/line.lua".source = ./lua/line.lua;
