@@ -1,7 +1,7 @@
 { inputs, outputs, lib, pkgs, config, ... }:
 {
   imports = [
-    ../global.nix 
+    ../global.nix
   ];
 
   home.packages = with pkgs; [
