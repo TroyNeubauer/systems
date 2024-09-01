@@ -6,7 +6,7 @@
     ../../common.nix
 
     ../../features/sound.nix
-    ../../features/i3/default.nix
+    ../../features/i3
   ];
 
   home-manager.users.troy = import ../../../home/machines/hamono.nix;

@@ -5,7 +5,7 @@ let
 in
 {
   imports = [
-    ../features/cli
+    features/cli
   ];
 
   nixpkgs = {
