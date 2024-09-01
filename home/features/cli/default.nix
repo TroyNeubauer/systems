@@ -2,8 +2,6 @@
   let is_linux = pkgs.stdenv.isLinux;
 in {
   imports = [
-    ./cargo.nix
-    ./fish.nix
     ./git.nix
     ./nvim
   ];
@@ -32,17 +30,27 @@ in {
     unzip
   ];
 
-  programs = {
-    fzf = {
-      enable = true;
-      enableFishIntegration = true;
-    };
+  home.file.".cargo/config.toml".text = ''
+    [target.x86_64-unknown-linux-gnu]
+    linker = "clang"
+    rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"]
+  '';
+
+
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
-  # nixpkgs.config = import ./nixpkgs-config.nix;
-  # home.file."nixpkgs-config" = {
-  #   target = ".config/nixpkgs/config.nix";
-  #   source = ./nixpkgs-config.nix;
-  # };
-  
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+
+      # if status is-interactive
+      #   bash -c "nohup VBoxManage startvm 6201-mc --type headless > /dev/null 2>&1  || true" &; disown
+      # end
+    '';
+    plugins = [ ];
+  };
 }

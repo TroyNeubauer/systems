@@ -1,18 +1,14 @@
 { inputs, outputs, lib, pkgs, config, ... }:
-let global = import ../features/desktop { config=config; pkgs=pkgs; lib=lib; };
-in {
+{
   imports = [
     ../global 
   ];
 
-  home.packages = with pkgs; lib.mkMerge [
-    global.packages
-    [
-      pkgs.unstable.davinci-resolve-studio
-      pkgs.local-pkgs.webcam-segmentation
-      discord
-      spotify
-      nvtopPackages.full
-    ]
+  home.packages = with pkgs; [
+    unstable.davinci-resolve-studio
+    local-pkgs.webcam-segmentation
+    discord
+    spotify
+    nvtopPackages.full
   ];
 }
