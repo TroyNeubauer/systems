@@ -5,6 +5,10 @@
   services.libinput.enable = true;
   services.displayManager.defaultSession = "none+i3";
 
+  home.file.".config/i3/config".source = import ./config.nix {
+    inherit (pkgs) writeText alacritty;
+  };
+
   services.xserver = {
     enable = true;
 

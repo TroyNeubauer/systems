@@ -1,7 +1,5 @@
 {
   description = "My NixOS Config";
-  # Structure based off of
-  # https://github.com/Misterio77/nix-config/tree/main
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
