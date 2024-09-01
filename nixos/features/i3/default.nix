@@ -2,9 +2,11 @@
 # see home-manager config for all the interesting config bits
 { lib, pkgs, ...}:
 {
+  services.libinput.enable = true;
+  services.displayManager.defaultSession = "none+i3";
+
   services.xserver = {
     enable = true;
-    libinput.enable = true;
 
     xkb.layout = "us";
     xkb.variant = "dvp";
@@ -13,8 +15,6 @@
     desktopManager.xterm.enable = false;
 
     excludePackages = [ pkgs.xterm ]; 
-
-    displayManager.defaultSession = "none+i3";
 
     windowManager.i3 = {
       enable = true;
