@@ -1,8 +1,9 @@
 { inputs, outputs, lib, pkgs, config, ... }:
   # let cli = import ../features/cli { config=config; pkgs=pkgs; lib=lib; };
-  {
+{
   imports = [
     ../features/cli
+    ../features/desktop/alacritty.nix
   ];
 
   home.packages = with pkgs; [
