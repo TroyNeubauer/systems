@@ -32,6 +32,10 @@ in
     };
   };
 
+  home.file.".config/i3/config".source = import ../nixos/features/i3/config.nix {
+    inherit (pkgs) writeText alacritty;
+  };
+
   # Let home manager manage itself
   programs.home-manager.enable = true;
 
