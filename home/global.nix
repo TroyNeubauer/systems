@@ -32,7 +32,7 @@ in
     };
   };
 
-  home.file.".config/i3/config".source = ./config;
+  home.file.".config/i3/config".source = ../nixos/features/i3/config;
 
   # Let home manager manage itself
   programs.home-manager.enable = true;

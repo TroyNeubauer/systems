@@ -64,6 +64,11 @@
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
+        "public-x86_64-linux" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./home/machines/public.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
       darwinConfigurations = {
         "Troys-MacBook-Air" = darwin.lib.darwinSystem {
