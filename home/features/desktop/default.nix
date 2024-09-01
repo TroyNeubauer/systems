@@ -7,7 +7,7 @@ let
     hash = "sha256-eCJ9CpKoBTaA684vDJ6p8IB2AhvIBfrrKuyoKCr1BJs=";
   };
 in {
-  packages = with pkgs; [
+  home.packages = with pkgs; [
     audacity
     gimp
     firefox
