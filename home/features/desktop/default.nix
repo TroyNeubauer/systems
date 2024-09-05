@@ -10,7 +10,6 @@
     firefox
     flameshot
     vlc
-    # nvtop
     libreoffice-qt
     qbittorrent
   ];

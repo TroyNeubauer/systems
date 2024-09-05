@@ -51,6 +51,7 @@
       fsType = "ext4";
     };
 
+  # See: https://discourse.nixos.org/t/how-to-unlock-some-luks-devices-with-a-keyfile-on-a-first-luks-device/18949/12
   environment.etc."crypttab".text = ''
     2024_8tb /dev/disk/by-uuid/20ed299e-7521-4a49-ba96-2b3bd539bb48 /etc/secrets/2024_8tb.key
   '';
