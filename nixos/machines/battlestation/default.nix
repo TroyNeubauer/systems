@@ -13,6 +13,18 @@
   environment.systemPackages = with pkgs; [
     (pkgs.wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
     linuxKernel.packages.linux_zen.perf
+    hackrf
+    (gnuradio3_8.override {
+      extraPackages = with gnuradio3_8Packages; [
+        xterm
+        osmosdr
+        limesdr
+      ];
+      extraPythonPackages = with gnuradio3_8.python.pkgs; [
+        numpy
+      ];
+    })
+    pkgs.unstable.android-studio
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;
@@ -42,6 +54,10 @@
     setLdLibraryPath = true;
   };
 
+  hardware.hackrf.enable = true;
+
+  programs.adb.enable = true;
+
   # VNC
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "${pkgs.i3}/bin/i3";
@@ -52,7 +68,10 @@
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = true;
-    extraConfig = ''ListenAddress = 10.222.0.3'';
+    extraConfig = ''
+      ListenAddress = 10.222.0.3
+      ListenAddress = 10.111.0.4
+    '';
   };
 
   # services.plex = {
@@ -107,25 +126,41 @@
       peers = [
         {
           publicKey = "RghT14Gj3wFDWhtpYP+eC1xOSnWB2hKnpx23ZsEn3Gs=";
-
-          # Forward subnet
           allowedIPs = [ "10.222.0.0/24" ];
-
           endpoint = "45.86.230.190:51820";
           persistentKeepalive = 25;
         }
-
-        # {
-        #   publicKey = "yrcEn4vUE5Tz7iLwjcsqCOz1HU0MH30YZBb0R79gPDo=";
-
-        #   # Forward subnet
-        #   allowedIPs = [ "10.222.0.7/32" ];
-
-        #   endpoint = "10.222.0.3:51820";
-        #   persistentKeepalive = 25;
-        # }
       ];
     };
+
+    foxhunter = {
+      ips = [ "10.111.0.4/24" ];
+      listenPort = 51821;
+
+      privateKeyFile = "/etc/secrets/foxhunter-wg-private";
+      # publicKey = "YMCTQK7BK1d7V1Rt/aVLPgOqOKYpb//f8ez6HXbpty0=";
+
+      peers = [
+        {
+          publicKey = "3Z7PGFd8VsaSZnI/8aI6COKETIW5IHD+ew50DnlHRko=";
+          allowedIPs = [ "10.111.0.0/24" ];
+          endpoint = "147.182.239.30:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
+
+ users.users.dgramop = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "disk" "systemd-journal" ];
+    shell = pkgs.fish;
+    hashedPassword = "$y$j9T$baKreEdRcVytXBsm2l4HX0$5QzMQBJuEeoSCqfjzyxOsDPhF52xfk2BhWqGYfx3x19";
+
+    openssh.authorizedKeys.keys = [
+      # Dhruv m1 pro macos
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCljmP0GXaGu97J/vOE5kvlKZt262sqx2ADiN0Glt5dMjiP4ubQLmC4vUr4rajV/n1JcTJzp12LSNmIVUQKLZgxLpwKhk7W7EAElT2rCMj6Yr1c2P5B34nGCyDYPjMWahupkZafLHze9zWxtkH+fHicH4GtOXMW4R9nZycwqtefAUsWBSbG023rYgzO9lUz8ZPb846CgwxWdtDoOdf15O58IrRfrWF3QKzWErli3OZ5K4cu70D55xCyGG9+Gpozf1u0kTF80jCb24TNr2CELEo8rqVXmJeVqA5LO1g5putLzzeTt8XL6tBjT2Wu0eQAAVOODee51QXCQ8dM29HaT7rbodeWEBrfAIY0V8FsjGQSpQv0VmcDzTyQH7Se29Pd6kPYP8M3VjPoTK+RMHSOdgTPY7iAgUo5c5qhs4DA3vXI+CgaEopL3AiKOtycYOhkMB/HGcQZiZ126BCRlr7exeM7d5/XQsNjhuLjyAnOxsWNA8DI0IvmRflakka2gVqEYRk= dgramop@Dhruvs-MacBook-Pro.local"
+    ];
   };
   
   system.stateVersion = "23.05";
