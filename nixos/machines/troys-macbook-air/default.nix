@@ -12,7 +12,7 @@
   services.karabiner-elements.enable = true;
   
   nix.settings.experimental-features = "nix-command flakes";
-  nix.settings.trusted-users = [ "troyneubauer" "root" ];
+  nix.settings.trusted-users = [ "troyneubauer" "root" "dgramop" ];
   
   programs.fish.enable = true;
   programs.zsh.enable = false;
