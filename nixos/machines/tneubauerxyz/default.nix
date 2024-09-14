@@ -64,12 +64,25 @@
   boot.kernel.sysctl."net.ipv4.ip_forward" = "1";
   boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = "1";
 
+  networking.nat.enable = true;
+  networking.nat.externalInterface = "ens3";
+  networking.nat.internalInterfaces = [ "wg0" ];
+
   networking.wireguard.interfaces = {
     wg0 = {
       ips = [ "10.222.0.1/24" ];
       listenPort = 51820;
 
       privateKeyFile = "/etc/secrets/wg-private";
+
+      postSetup = ''
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.222.0.0/24 -o ens3 -j MASQUERADE
+      '';
+
+      # This undoes the above command
+      postShutdown = ''
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.222.0.0/24 -o ens3 -j MASQUERADE
+      '';
 
       peers = [
         # Personal stuff
