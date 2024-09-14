@@ -84,7 +84,7 @@
         ${pkgs.iptables}/bin/ip6tables -A FORWARD -i wg0 -j ACCEPT
       '';
 
-      preShutdown = ''
+      postShutdown = ''
         ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.222.0.1/24 -o ens3 -j MASQUERADE
         ${pkgs.iptables}/bin/ip6tables -D FORWARD -i wg0 -j ACCEPT
