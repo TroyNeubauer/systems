@@ -78,14 +78,13 @@
 
       privateKeyFile = "/etc/secrets/wg-private";
 
-      postUp = ''
+      postSetup = ''
         ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.222.0.1/24 -o ens3 -j MASQUERADE
         ${pkgs.iptables}/bin/ip6tables -A FORWARD -i wg0 -j ACCEPT
       '';
 
-      # Undo the above
-      preDown = ''
+      preShutdown = ''
         ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.222.0.1/24 -o ens3 -j MASQUERADE
         ${pkgs.iptables}/bin/ip6tables -D FORWARD -i wg0 -j ACCEPT
