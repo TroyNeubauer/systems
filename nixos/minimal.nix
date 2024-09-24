@@ -65,6 +65,12 @@
       options = "--delete-older-than 30d";
     };
 
+    # Keep shells and manual builds
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
+
     package = pkgs.nixFlakes;
   };
 

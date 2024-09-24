@@ -97,6 +97,21 @@
     };
   };
 
+  services.nginx = {
+    enable = true;
+    virtualHosts."battlestation.com" = {
+      enableACME = false;
+      forceSSL = false;
+      root = "/disks/2024_8tb/www/foxhunter/public/";
+      extraConfig = ''
+        index index.html;
+        autoindex on;
+      '';
+
+      listenAddresses = [ "10.111.0.4" ]; 
+    };
+  };
+
   services.mysql = {
     enable = true;
     dataDir = "/data/mysql";

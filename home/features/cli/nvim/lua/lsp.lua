@@ -86,9 +86,9 @@ end)
 lsp.new_client({
   name = 'rust-analyzer',
   cmd = {'rust-analyzer'},
-  filetypes = {'rs'},
+  filetypes = { 'rs', 'rust' },
   root_dir = function()
-    local root = lsp.dir.find_first({'Cargo.lock'})
+    local root = lsp.dir.find_first({ 'Cargo.lock' })
     return root
   end
 })
@@ -98,7 +98,7 @@ lsp.new_client({
   cmd = {'clangd'},
   filetypes = {'c', 'cpp', 'cc'},
   root_dir = function()
-    local root = lsp.dir.find_first({'Makefile'})
+    local root = lsp.dir.find_first({ 'Makefile' })
     return root
   end
 })
@@ -106,9 +106,9 @@ lsp.new_client({
 lsp.new_client({
   name = 'kotlin-language-server',
   cmd = {'kotlin-language-server'},
-  filetypes = {'kt'},
+  filetypes = { 'kt', 'kotlin' },
   root_dir = function()
-    local root = lsp.dir.find_first({'gradlew'})
+    local root = lsp.dir.find_first({ 'gradlew' })
     return root
   end
 })
