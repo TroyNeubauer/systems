@@ -64,12 +64,29 @@
   boot.kernel.sysctl."net.ipv4.ip_forward" = "1";
   boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = "1";
 
+  networking.nat = {
+    enable = true;
+    enableIPv6 = true;
+    externalInterface = "ens3";
+    internalInterfaces = [ "wg0" ];
+  };
+
   networking.wireguard.interfaces = {
     wg0 = {
       ips = [ "10.222.0.1/24" ];
       listenPort = 51820;
 
       privateKeyFile = "/etc/secrets/wg-private";
+
+      postSetup = ''
+        ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.222.0.0/24 -o ens3 -j MASQUERADE
+      '';
+
+      postShutdown = ''
+        ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.222.0.0/24 -o ens3 -j MASQUERADE
+      '';
 
       peers = [
         # Personal stuff
@@ -124,6 +141,13 @@
           ### T2
           publicKey = "UnMXy/SHOI1wKuqXBf2vi/NWXRUrAg3dblDyXSi86EQ=";
           allowedIPs = [ "10.222.0.21/32" ];
+        }
+
+        ### Miguel
+        {
+          ## Macbook air m2 2023 macos
+          publicKey = "gTdY+ZqmEdjcU2qMqnnrd5hvcc60UqfAT1CJPW043S4=";
+          allowedIPs = [ "10.222.0.55/32" ];
         }
       ];
     };
