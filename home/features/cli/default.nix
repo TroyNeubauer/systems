@@ -25,6 +25,8 @@ in {
     mold
     p7zip
     rustup
+    cargo-machete
+    cargo-public-api
     tmux
     tree
     unzip
@@ -42,14 +44,12 @@ in {
     enableFishIntegration = true;
   };
 
+  # TODO: add `dev` command that adds gc root to nix develop default shell and opens it
+  # See: https://github.com/ruuda/dotfiles/blob/1a28049980c61f22706b2d5d3e8f8951527403a3/zsh/.zshrc#L142-L158
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
-
-      # if status is-interactive
-      #   bash -c "nohup VBoxManage startvm 6201-mc --type headless > /dev/null 2>&1  || true" &; disown
-      # end
     '';
     plugins = [ ];
   };

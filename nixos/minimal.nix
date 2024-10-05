@@ -28,6 +28,7 @@
     file
     fish
     git
+    git-lfs
     gnumake
     gcc
     htop

@@ -113,3 +113,4 @@ nixpkgs
 subslice
 UnsafeCell
 bootloader
+subimg

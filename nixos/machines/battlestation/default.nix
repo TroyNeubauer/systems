@@ -58,6 +58,8 @@
 
   programs.adb.enable = true;
 
+  programs.nix-ld.enable = true;
+
   # VNC
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "${pkgs.i3}/bin/i3";

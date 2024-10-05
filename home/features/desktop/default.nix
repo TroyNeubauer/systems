@@ -12,6 +12,7 @@
     vlc
     libreoffice-qt
     qbittorrent
+    xclip
   ];
 
   programs.firefox.enable = true;

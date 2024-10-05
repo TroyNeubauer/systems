@@ -3,7 +3,7 @@
   users.users.troy = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "disk" "audio" "video" "docker" "systemd-journal" "plugdev" "adbusers" ];
-    shell = pkgs.fish; 
+    shell = pkgs.fish;
 
     openssh.authorizedKeys.keys  = [
       # Battlestation
