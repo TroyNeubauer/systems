@@ -20,9 +20,6 @@
         # TODO: re-setup signing keys
         # gpgsign = true;
       };
-      core = {
-        excludesfile = "~/.gitignore";
-      };
       github = {
         user = "troyneubauer";
       };
