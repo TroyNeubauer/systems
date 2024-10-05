@@ -38,7 +38,6 @@ in {
     rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"]
   '';
 
-
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
