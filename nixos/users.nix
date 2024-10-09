@@ -2,7 +2,7 @@
 {
   users.users.troy = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "disk" "audio" "video" "docker" "systemd-journal" "plugdev" "adbusers" ];
+    extraGroups = [ "wheel" "networkmanager" "disk" "audio" "video" "docker" "systemd-journal" "plugdev" "adbusers" "bladerf" ];
     shell = pkgs.fish;
 
     openssh.authorizedKeys.keys  = [

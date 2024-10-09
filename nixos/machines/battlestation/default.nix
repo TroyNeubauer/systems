@@ -5,27 +5,15 @@
     ../../common.nix
 
     ../../features/sound.nix
-    ../../features/virtualbox.nix
     ../../features/kindle
     ../../features/bluetooth.nix
+    ../../features/sdr.nix
     ../../features/i3
   ];
 
   environment.systemPackages = with pkgs; [
     (pkgs.wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
-    linuxKernel.packages.linux_zen.perf
-    hackrf
-    libbladeRF
-    (gnuradio3_8.override {
-      extraPackages = with gnuradio3_8Packages; [
-        xterm
-        osmosdr
-        limesdr
-      ];
-      extraPythonPackages = with gnuradio3_8.python.pkgs; [
-        numpy
-      ];
-    })
+    linuxKernel.packages.linux_zen.perf 
     pkgs.unstable.android-studio
   ];
 
@@ -55,8 +43,6 @@
     ];
     setLdLibraryPath = true;
   };
-
-  hardware.hackrf.enable = true;
 
   programs.adb.enable = true;
 
