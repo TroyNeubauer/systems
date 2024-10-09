@@ -5,6 +5,7 @@
     ../../common.nix
 
     ../../features/sound.nix
+    ../../features/virtualbox.nix
     ../../features/kindle
     ../../features/bluetooth.nix
     ../../features/i3
@@ -14,6 +15,7 @@
     (pkgs.wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
     linuxKernel.packages.linux_zen.perf
     hackrf
+    libbladeRF
     (gnuradio3_8.override {
       extraPackages = with gnuradio3_8Packages; [
         xterm
