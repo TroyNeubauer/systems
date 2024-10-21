@@ -27,6 +27,7 @@
     curl
     file
     fish
+    nix-your-shell
     git
     git-lfs
     gnumake
@@ -61,16 +62,8 @@
     };
 
     gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
+      automatic = false;
     };
-
-    # Keep shells and manual builds
-    extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true
-    '';
 
     package = pkgs.nixFlakes;
   };

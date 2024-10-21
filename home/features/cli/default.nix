@@ -49,6 +49,8 @@ in {
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
+
+      nix-your-shell fish | source
     '';
     plugins = [ ];
   };
