@@ -34,6 +34,7 @@
       lualine-lsp-progress
       telescope-zf-native-nvim
       telescope-nvim
+      vim-rooter
       # vim-gitgutter
     ];
   };
