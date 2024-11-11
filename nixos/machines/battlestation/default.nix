@@ -12,9 +12,9 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    (pkgs.wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
+    (wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
     linuxKernel.packages.linux_zen.perf 
-    pkgs.unstable.android-studio
+    unstable.android-studio
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;
@@ -48,10 +48,12 @@
 
   programs.nix-ld.enable = true;
 
-  # VNC
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "${pkgs.i3}/bin/i3";
-
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
