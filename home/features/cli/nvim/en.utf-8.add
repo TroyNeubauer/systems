@@ -118,3 +118,9 @@ sandboxed
 filesystem
 proc
 FPGA
+hackrf
+BLADERF
+FPGA
+BITSTREAM
+bitstream
+fpga
