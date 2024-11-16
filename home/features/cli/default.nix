@@ -15,6 +15,7 @@ in {
     # [if is_linux then [gdb] else []]
     fd
     fish
+    nix-your-shell
     ffmpeg
     lldb
     git
