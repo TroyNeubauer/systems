@@ -14,7 +14,7 @@
   environment.systemPackages = with pkgs; [
     (wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
     linuxKernel.packages.linux_zen.perf 
-    unstable.android-studio
+    android-studio
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;

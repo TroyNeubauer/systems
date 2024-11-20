@@ -97,7 +97,7 @@ lsp.new_client({
   cmd = { 'clangd' },
   filetypes = { 'c', 'cpp', 'cc' },
   root_dir = function()
-    return lsp.dir.find_first({ 'Makefile' })
+    return lsp.dir.find_first({ 'build' })
   end
 })
 
