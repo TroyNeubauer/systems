@@ -11,7 +11,7 @@
     flameshot
     vlc
     libreoffice-qt
-    qbittorrent
+    unstable.qbittorrent
     xclip
   ];
 
