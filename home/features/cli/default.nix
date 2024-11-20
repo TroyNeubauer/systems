@@ -7,16 +7,16 @@ in {
   ];
 
   home.packages = with pkgs; [
-    eza
+    cargo-machete
+    cargo-public-api
     clang
     clang-tools
     delta
-    # Not supported on m2, need to dynamically add here
-    # [if is_linux then [gdb] else []]
+    eza
     fd
     fish
+    nix-your-shell
     ffmpeg
-    lldb
     git
     jq
     htop
@@ -25,11 +25,13 @@ in {
     mold
     p7zip
     rustup
-    cargo-machete
-    cargo-public-api
     tmux
     tree
     unzip
+  ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+    gdb
+  ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+    lldb
   ];
 
   home.file.".cargo/config.toml".text = ''
