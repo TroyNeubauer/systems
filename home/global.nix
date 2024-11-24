@@ -1,7 +1,9 @@
 { inputs, outputs, lib, config, pkgs, ... }: 
 let
   inherit (pkgs.stdenv) isDarwin;
-  homeDirectory = if isDarwin then "/Users/troy" else "/home/troy";
+  # TODO: make generic
+  username = "tneubauer";
+  homeDirectory = if isDarwin then "/Users/troy" else "/home/${username}";
 in
 {
   imports = [
@@ -22,7 +24,7 @@ in
   };
 
   home = {
-    username = "troy";
+    inherit username;
     inherit homeDirectory;
     sessionVariables = {
       EDITOR = "nvim";
@@ -33,6 +35,7 @@ in
   };
 
   home.file.".config/i3/config".source = import ../nixos/features/i3/config.nix {
-    inherit (pkgs) writeText alacritty;
+    inherit (pkgs) writeText;
+    alacritty = "alacritty";
   };
 }

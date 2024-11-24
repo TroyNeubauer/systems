@@ -62,8 +62,8 @@
         tneubauerxyz = mkNixos [ ./nixos/machines/tneubauerxyz ];
       };
       homeConfigurations = {
-        "battlestation" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./home/machines/battlestation.nix ];
+        "dell" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./home/machines/dell.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };

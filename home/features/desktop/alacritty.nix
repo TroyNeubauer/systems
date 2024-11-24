@@ -7,7 +7,7 @@ let
     hash = "sha256-eCJ9CpKoBTaA684vDJ6p8IB2AhvIBfrrKuyoKCr1BJs=";
   };
 in {
-  programs.alacritty.enable = true;
+  # programs.alacritty.enable = true;
 
   home.file.".config/alacritty/alacritty.toml".source = pkgs.writeText "alacritty.toml" ''
     font.size = 10

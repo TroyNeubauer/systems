@@ -44,7 +44,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec ${alacritty}/bin/alacritty
+# TODO: fixme on nixos
+# bindsym $mod+Return exec ${alacritty}/bin/alacritty
+bindsym $mod+Return exec ${alacritty}
 
 # kill focused window
 bindsym $mod+Shift+j kill
