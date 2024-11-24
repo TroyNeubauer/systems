@@ -9,6 +9,7 @@ in {
   home.packages = with pkgs; [
     cargo-machete
     cargo-public-api
+    cargo-expand
     clang
     clang-tools
     delta
