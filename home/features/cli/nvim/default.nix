@@ -42,9 +42,9 @@
   # We like to symlink `~/.config/nvim/spell/en.utf-8.add` to point to `./en.utf-8.add`,
   # so that we can easily keep our spelling additions in version control. Nix doesn't like this since its not pure.
   # When setting up a new system run (assuming this project is in `~/nix/systems`:
-  # `rm -f ~/.config/nvim/spell/en.utf-8.add && ln -s ~/nix/systems/home/features/cli/nvim/en.utf-8.add ~/.config/nvim/spell/en.utf-8.add`
+  # `rm -f ~/.config/nvim/spell/en.utf-8.add && mkdir -p ~/.config/nvim/spell; ln -s ~/nix/systems/home/features/cli/nvim/en.utf-8.add ~/.config/nvim/spell/en.utf-8.add`
   # TODO: do this automatically
-  # Systemd service may work, but then we have to assume the user always clones this repo into ~/nix/systems, akward, so punting for now
+  # Systemd service may work, but then we have to assume the user always clones this repo into ~/nix/systems, award, so punting for now
 
   home.file.".config/nvim/init.lua".source = ./init.lua;
   home.file.".config/nvim/lua/line.lua".source = ./lua/line.lua;
