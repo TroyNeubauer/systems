@@ -122,6 +122,9 @@
   # networking.firewall.allowedTCPPorts = [ 4567 ];
   # networking.firewall.allowPing = true;
 
+  # Use foxhunter DNS
+  networking.nameservers = [ "10.111.0.1" ];
+
   networking.wireguard.interfaces = {
     wg0 = {
       ips = [ "10.222.0.3/24" ];
