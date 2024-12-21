@@ -117,14 +117,13 @@
 
   networking = {
     networkmanager.enable = true;
+    # Use foxhunter DNS
+    networkmanager.insertNameservers = [ "10.56.0.1" ];
 
     firewall.enable = false;
     # firewall.allowedUDPPorts = [ 51820 ];
     # firewall.allowedTCPPorts = [ 4567 ];
-    # firewall.allowPing = true;
-
-    # Use foxhunter DNS
-    nameservers = [ "10.56.0.1" ];
+    # firewall.allowPing = true; 
 
     dhcpcd = {
       enable = true;

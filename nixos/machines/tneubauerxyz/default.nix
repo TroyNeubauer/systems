@@ -142,13 +142,6 @@
           publicKey = "UnMXy/SHOI1wKuqXBf2vi/NWXRUrAg3dblDyXSi86EQ=";
           allowedIPs = [ "10.222.0.21/32" ];
         }
-
-        ### Miguel
-        {
-          ## Macbook air m2 2023 macos
-          publicKey = "gTdY+ZqmEdjcU2qMqnnrd5hvcc60UqfAT1CJPW043S4=";
-          allowedIPs = [ "10.222.0.55/32" ];
-        }
       ];
     };
   };
