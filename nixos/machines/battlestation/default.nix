@@ -28,8 +28,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
  
-  networking.networkmanager.enable = true;
-
   hardware.nvidia = {
     nvidiaSettings = true;
     modesetting.enable = true;
@@ -62,7 +60,7 @@
     settings.PasswordAuthentication = true;
     extraConfig = ''
       ListenAddress = 10.222.0.3
-      ListenAddress = 10.111.0.4
+      ListenAddress = 10.56.0.4
     '';
   };
 
@@ -100,7 +98,7 @@
         autoindex on;
       '';
 
-      listenAddresses = [ "10.111.0.4" ]; 
+      listenAddresses = [ "10.56.0.4" ]; 
     };
   };
 
@@ -117,47 +115,59 @@
     } ];
   };
 
-  networking.firewall.enable = false;
-  # networking.firewall.allowedUDPPorts = [ 51820 ];
-  # networking.firewall.allowedTCPPorts = [ 4567 ];
-  # networking.firewall.allowPing = true;
+  networking = {
+    networkmanager.enable = true;
 
-  # Use foxhunter DNS
-  networking.nameservers = [ "10.111.0.1" ];
+    firewall.enable = false;
+    # firewall.allowedUDPPorts = [ 51820 ];
+    # firewall.allowedTCPPorts = [ 4567 ];
+    # firewall.allowPing = true;
 
-  networking.wireguard.interfaces = {
-    wg0 = {
-      ips = [ "10.222.0.3/24" ];
-      listenPort = 51820;
+    # Use foxhunter DNS
+    nameservers = [ "10.56.0.1" ];
 
-      privateKeyFile = "/etc/secrets/wg-private";
-      # publicKey = "SPZtxJdmrFdmQWHimhoFXBoCMk2f34KMClFVkBU=";
-
-      peers = [
-        {
-          publicKey = "RghT14Gj3wFDWhtpYP+eC1xOSnWB2hKnpx23ZsEn3Gs=";
-          allowedIPs = [ "10.222.0.0/24" ];
-          endpoint = "45.86.230.190:51820";
-          persistentKeepalive = 25;
-        }
-      ];
+    dhcpcd = {
+      enable = true;
+      # Do not accept DNS from DHCP
+      extraConfig = ''
+        nohook resolv.conf
+      '';
     };
 
-    foxhunter = {
-      ips = [ "10.111.0.4/24" ];
-      listenPort = 51821;
+    wireguard.interfaces = {
+      wg0 = {
+        ips = [ "10.222.0.3/24" ];
+        listenPort = 51820;
 
-      privateKeyFile = "/etc/secrets/foxhunter-wg-private";
-      # publicKey = "YMCTQK7BK1d7V1Rt/aVLPgOqOKYpb//f8ez6HXbpty0=";
+        privateKeyFile = "/etc/secrets/wg-private";
+        # publicKey = "SPZtxJdmrFdmQWHimhoFXBoCMk2f34KMClFVkBU=";
 
-      peers = [
-        {
-          publicKey = "3Z7PGFd8VsaSZnI/8aI6COKETIW5IHD+ew50DnlHRko=";
-          allowedIPs = [ "10.111.0.0/24" ];
-          endpoint = "147.182.239.30:51820";
-          persistentKeepalive = 25;
-        }
-      ];
+        peers = [
+          {
+            publicKey = "RghT14Gj3wFDWhtpYP+eC1xOSnWB2hKnpx23ZsEn3Gs=";
+            allowedIPs = [ "10.222.0.0/24" ];
+            endpoint = "45.86.230.190:51820";
+            persistentKeepalive = 25;
+          }
+        ];
+      };
+
+      foxhunter = {
+        ips = [ "10.56.0.4/24" ];
+        listenPort = 51821;
+
+        privateKeyFile = "/etc/secrets/foxhunter-wg-private";
+        # publicKey = "YMCTQK7BK1d7V1Rt/aVLPgOqOKYpb//f8ez6HXbpty0=";
+
+        peers = [
+          {
+            publicKey = "3Z7PGFd8VsaSZnI/8aI6COKETIW5IHD+ew50DnlHRko=";
+            allowedIPs = [ "10.56.0.0/24" ];
+            endpoint = "147.182.239.30:51820";
+            persistentKeepalive = 25;
+          }
+        ];
+      };
     };
   };
 
