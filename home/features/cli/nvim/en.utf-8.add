@@ -138,3 +138,7 @@ BlockMetadata
 complex32
 BlockPin
 real32
+FloatValue
+F64Picker
+UsizeValue
+metadata
