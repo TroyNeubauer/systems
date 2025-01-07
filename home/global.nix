@@ -33,6 +33,6 @@ in
   };
 
   home.file.".config/i3/config".source = import ../nixos/features/i3/config.nix {
-    inherit (pkgs) writeText alacritty;
+    inherit (pkgs) writeText writeShellScript alacritty firefox;
   };
 }

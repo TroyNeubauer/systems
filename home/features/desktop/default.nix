@@ -7,8 +7,6 @@
   home.packages = with pkgs; [
     audacity
     gimp
-    firefox
-    flameshot
     vlc
     libreoffice-qt
     unstable.qbittorrent

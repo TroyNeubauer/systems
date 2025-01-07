@@ -2,13 +2,13 @@
   description = "My NixOS Config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -24,6 +24,11 @@
 
     naersk = {
       url = "github:nix-community/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    duo-enforcer = {
+      url = "github:TroyNeubauer/duo-enforcer";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

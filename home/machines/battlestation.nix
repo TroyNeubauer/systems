@@ -3,6 +3,7 @@
   imports = [
     ../global.nix
     ../features/desktop
+    ../features/duo-enforcer.nix
   ];
 
   home.packages = with pkgs; [

@@ -30,16 +30,14 @@
  
   hardware.nvidia = {
     nvidiaSettings = true;
+    open = true;
     modesetting.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [
-      libGL
-    ];
-    setLdLibraryPath = true;
+    extraPackages = [ pkgs.libGL ];
   };
 
   programs.adb.enable = true;

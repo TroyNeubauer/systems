@@ -26,7 +26,6 @@
   environment.systemPackages = with pkgs; [
     curl
     file
-    fish
     nix-your-shell
     git
     git-lfs
@@ -64,8 +63,6 @@
     gc = {
       automatic = false;
     };
-
-    package = pkgs.nixFlakes;
   };
 
   services.automatic-timezoned.enable = lib.mkDefault false;
