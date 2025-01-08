@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../common.nix
+    ../../features/duo-enforcer.nix
 
     ../../features/sound.nix
     ../../features/kindle
@@ -18,6 +19,7 @@
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;
+  home-manager.backupFileExtension = "hm-backup";
 
   networking.hostName = "battlestation";
 
@@ -51,6 +53,8 @@
     localNetworkGameTransfers.openFirewall = true;
   };
 
+  services.duo-enforcer.enable = true;
+
   services.xserver.videoDrivers = [ "nvidia" ];
 
   services.openssh = {
@@ -62,13 +66,9 @@
     '';
   };
 
-  # services.plex = {
-  #   enable = true;
-  #   openFirewall = true;
-  # };
-
+  # TODO: move to other computer
   services.photoprism = {
-    enable = true;
+    enable = false;
     port = 2342;
     originalsPath = "/var/lib/private/photoprism/originals";
     address = "10.222.0.3";
