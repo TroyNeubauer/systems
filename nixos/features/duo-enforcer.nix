@@ -15,7 +15,8 @@
       serviceConfig = {
         Type = "simple";
         ExecStart = "${inputs.duo-enforcer.packages.${pkgs.system}.duo-enforcer}/bin/duo-enforcer";
-        Restart = "on-failure";
+        Restart = "always";
+        RestartSec = 5;
       };
       requires = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
