@@ -124,13 +124,11 @@ FPGA
 BITSTREAM
 bitstream
 fpga
-lables/!
 reentrantly
 spectrogram
 shaders
 flowgraph
 FutureSDR
-recurses
 Recurse
 flowgraphs
 BlockChannel
@@ -142,3 +140,6 @@ FloatValue
 F64Picker
 UsizeValue
 metadata
+recurses
+parseable
+changelog
