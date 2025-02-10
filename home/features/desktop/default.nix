@@ -7,7 +7,6 @@
   home.packages = with pkgs; [
     audacity
     gimp
-    firefox
     flameshot
     vlc
     # nvtop
