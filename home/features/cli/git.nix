@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   programs.git = {
     enable = true;
     delta.enable = true;
 
     userName = "Troy Neubauer";
-    userEmail = "troyneubauer@gmail.com";
+    userEmail = lib.mkDefault "troyneubauer@gmail.com";
 
     extraConfig = {
       color = {
