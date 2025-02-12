@@ -31,6 +31,11 @@
       url = "github:TroyNeubauer/duo-enforcer";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, darwin, ... }@inputs:
@@ -74,11 +79,12 @@
         };
       };
       darwinConfigurations = {
-        "Troys-MacBook-Air" = darwin.lib.darwinSystem {
+        "Troys-Air" = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
             home-manager.darwinModules.home-manager
             ./nixos/machines/troys-macbook-air
+            { home-manager.extraSpecialArgs = { inherit inputs outputs; }; }
           ];
         };
       };

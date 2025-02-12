@@ -1,7 +1,7 @@
-{ inputs, outputs, lib, pkgs, config, ... }:
+{ inputs, outputs, lib, config, pkgs, ... }:
 {
   imports = [
-    ../features/cli
+    ../global.nix
     ../features/desktop/alacritty.nix
   ];
 

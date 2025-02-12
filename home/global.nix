@@ -1,7 +1,8 @@
 { inputs, outputs, lib, config, pkgs, ... }: 
 let
-  inherit (pkgs.stdenv) isDarwin;
-  homeDirectory = if isDarwin then "/Users/troy" else "/home/troy";
+  # Fall back to builtins.currentSystem if nixpkgs.system is missing (nix darwin)
+  system = config.nixpkgs.system or builtins.currentSystem;
+  isDarwin = lib.strings.match ".*-darwin" system != null;
 in
 {
   imports = [
@@ -10,6 +11,7 @@ in
 
   nixpkgs = {
     overlays = [
+      (import inputs.rust-overlay)
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
@@ -22,17 +24,14 @@ in
   };
 
   home = {
-    username = "troy";
-    inherit homeDirectory;
     sessionVariables = {
       EDITOR = "nvim";
       TERMINAL = lib.mkDefault "alacritty";
       COLORTERM = lib.mkDefault "truecolor";
       BROWSER = lib.mkDefault "firefox";
     };
-  };
-
-  home.file.".config/i3/config".source = import ../nixos/features/i3/config.nix {
-    inherit (pkgs) writeText writeShellScript alacritty firefox rofi;
+  } // lib.optionalAttrs (! isDarwin) {
+    homeDirectory = "/home/troy";
+    username = "troy";
   };
 }

@@ -15,15 +15,19 @@
   modifications = final: prev: {
     cargo-public-api = prev.naersk.buildPackage {
       src = prev.fetchFromGitHub {
-        owner = "TroyNeubauer";
+        owner = "cargo-public-api";
         repo = "cargo-public-api";
-        rev = "b993fe8564d05277e94363f8dfaa1c8a3d56b2e3";
-        hash = "sha256-v8IiJKp2PZB3GK8+OdEa9NUCHeLgIMK+FYzjvcy4tK0=";
+        rev = "ae6edf43d61b7ce5baec601195bf114d33b87a73";
+        hash = "sha256-ewzfsvCvmAGPqnihVEK1Ahr0rAzSg5isA1KnVA5m8CI=";
       };
+
+      # Let Cargo find libcurl (macos)
+      nativeBuildInputs = [
+        final.curl
+        final.pkg-config
+      ];
+      doCheck = false;
     };
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
-    # });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

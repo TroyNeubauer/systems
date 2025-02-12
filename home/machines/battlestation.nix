@@ -14,6 +14,10 @@
     nvtopPackages.full
   ];
 
+  home.file.".config/i3/config".source = import ../nixos/features/i3/config.nix {
+    inherit (pkgs) writeText writeShellScript alacritty firefox rofi;
+  };
+
   # Let home manager manage itself
   programs.home-manager.enable = true;
 

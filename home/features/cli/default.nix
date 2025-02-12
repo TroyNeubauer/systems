@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
-  let is_linux = pkgs.stdenv.isLinux;
-in {
+{
   imports = [
     ./git.nix
     ./nvim
@@ -25,10 +24,11 @@ in {
     hunspellDicts.en_US
     mold
     p7zip
-    rustup
     tmux
+    tokei
     tree
     unzip
+    rust-bin.stable.latest.default
   ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
     gdb
   ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [

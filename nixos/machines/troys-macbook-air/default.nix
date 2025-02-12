@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  home-manager.useGlobalPkgs = true;
+  home-manager.useGlobalPkgs = false;
   home-manager.useUserPackages = true;
   home-manager.users.troyneubauer = import ../../../home/machines/troys-macbook-air.nix;
   
@@ -9,14 +9,12 @@
   
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
-  services.karabiner-elements.enable = true;
   
   nix.settings.experimental-features = "nix-command flakes";
   nix.settings.trusted-users = [ "troyneubauer" "root" "dgramop" ];
   
   programs.fish.enable = true;
   programs.zsh.enable = false;
-
   
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
