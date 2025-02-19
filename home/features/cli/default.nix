@@ -30,11 +30,13 @@ in {
     unzip
   ];
 
-  home.file.".cargo/config.toml".text = ''
-    [target.x86_64-unknown-linux-gnu]
-    linker = "clang"
-    rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"]
-  '';
+  # TODO: fix
+  # Usse with gcc linking instead of clang? note: gcc: error: unrecognized command-line option '-fuse-ld=/nix/store/nq17r14424m8f6qpk0qgm11lnaq2ijsh-mold-2.34.1/bin/mold'
+  # home.file.".cargo/config.toml".text = ''
+  #   [target.x86_64-unknown-linux-gnu]
+  #   linker = "clang"
+  #   rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"]
+  # '';
 
 
   programs.fzf = {
