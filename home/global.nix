@@ -33,5 +33,5 @@ in
   } // lib.optionalAttrs (! isDarwin) {
     homeDirectory = "/home/troy";
     username = "troy";
-  };
+  }; 
 }

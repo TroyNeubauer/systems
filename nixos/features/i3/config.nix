@@ -1,4 +1,4 @@
-{ writeText, writeShellScript, alacritty, firefox, rofi }: 
+{ writeText, writeShellScript, alacritty, firefox, rofi, pavucontrol, blueman, enforceDuo }: 
 let
   enforceDuoScript = writeShellScript "enforce-duo" ''
     if [ -f /tmp/.computer_unblocked ]; then
@@ -12,7 +12,7 @@ let
     fi
   '';
   launchRofiScript = writeShellScript "launch-rofi" "${rofi}/bin/rofi -modi drun,run -show drun";
-  launchDuoFirefox = writeShellScript "launch-rofi" "${firefox}/bin/firefox --new-tab https://duolingo.com --new-tab http://127.0.0.1:4550/";
+  launchDuoFirefox = writeShellScript "launch-duo-firefox" "${firefox}/bin/firefox --new-tab https://duolingo.com --new-tab http://127.0.0.1:4550/";
 in writeText "i3_config" ''
 
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -22,7 +22,12 @@ set $mod Mod4
 font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
 
-exec --no-startup-id ${launchDuoFirefox}
+# Launch allowed apps for compluting duolingo (firefox + sound + bluetooth)
+${if enforceDuo then ''
+  exec --no-startup-id ${launchDuoFirefox}
+  exec --no-startup-id ${pavucontrol}/bin/pavucontrol
+  exec --no-startup-id ${blueman}/bin/blueman-manager
+'' else ""}
 
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -34,14 +39,18 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # Enforce Duo complete to open terminal, do nothing when incomplete
-bindsym $mod+Return exec ${enforceDuoScript} ${alacritty}/bin/alacritty ${launchDuoFirefox}
-# bindsym $mod+Return exec ${alacritty}/bin/alacritty
+${if enforceDuo then
+  "bindsym $mod+Return exec ${enforceDuoScript} ${alacritty}/bin/alacritty ${launchDuoFirefox}"
+else
+  "bindsym $mod+Return exec ${alacritty}/bin/alacritty"}
 
 bindsym $mod+Shift+j kill
 
 # Enforce Duo complete for dmenu, open duo website when incomplete
-bindsym $mod+d exec ${enforceDuoScript} ${launchRofiScript} ${launchDuoFirefox}
-# bindsym $mod+d exec "rofi -modi drun,run -show drun"
+${if enforceDuo then
+  "bindsym $mod+d exec ${enforceDuoScript} ${launchRofiScript} ${launchDuoFirefox}"
+else
+  "bindsym $mod+d exec 'rofi -modi drun,run -show drun'"}
 
 
 # change focus

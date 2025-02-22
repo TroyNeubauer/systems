@@ -13,6 +13,8 @@
     ];
   };
 
+  nix.settings.trusted-users = [ "troy" ];
+
   # allow running nixos-rebuild as root without a password.
   # requires us to explicitly pull in nixos-rebuild from pkgs, so
   # we get the right path in the sudo config

@@ -14,8 +14,9 @@
     nvtopPackages.full
   ];
 
-  home.file.".config/i3/config".source = import ../nixos/features/i3/config.nix {
-    inherit (pkgs) writeText writeShellScript alacritty firefox rofi;
+  home.file.".config/i3/config".source = import ../../nixos/features/i3/config.nix {
+    inherit (pkgs) writeText writeShellScript alacritty firefox rofi pavucontrol blueman;
+    enforceDuo = true;
   };
 
   # Let home manager manage itself
