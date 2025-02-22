@@ -6,7 +6,7 @@
     delta.enable = true;
 
     userName = "Troy Neubauer";
-    userEmail = "troyneubauer@gmail.com";
+    userEmail = lib.mkDefault "troyneubauer@gmail.com";
 
     aliases = {
       set-upstream = "!git branch --set-upstream-to=origin/`${pkgs.git}/bin/git symbolic-ref --short HEAD`";
