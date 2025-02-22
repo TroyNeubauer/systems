@@ -2,6 +2,8 @@
 {
   programs.neovim = {
     enable = true;
+    package = pkgs.unstable.neovim-unwrapped;
+
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
@@ -35,7 +37,6 @@
       telescope-zf-native-nvim
       telescope-nvim
       vim-rooter
-      # vim-gitgutter
     ];
   };
 
