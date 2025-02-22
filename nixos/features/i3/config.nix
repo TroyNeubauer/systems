@@ -50,7 +50,7 @@ bindsym $mod+Shift+j kill
 ${if enforceDuo then
   "bindsym $mod+d exec ${enforceDuoScript} ${launchRofiScript} ${launchDuoFirefox}"
 else
-  "bindsym $mod+d exec 'rofi -modi drun,run -show drun'"}
+  "bindsym $mod+d exec \"rofi -modi drun,run -show drun\""}
 
 
 # change focus
