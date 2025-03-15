@@ -144,3 +144,6 @@ recurses
 parseable
 changelog
 SEMVER
+endian
+tempfile
+linux
