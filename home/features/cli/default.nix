@@ -19,6 +19,7 @@
     ffmpeg
     git
     jq
+    hex
     htop
     hunspell
     hunspellDicts.en_US

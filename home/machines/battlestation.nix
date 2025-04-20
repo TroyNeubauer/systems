@@ -12,6 +12,7 @@
     discord
     spotify
     nvtopPackages.full
+    local-pkgs.openvsp
   ];
 
   home.file.".config/i3/config".source = import ../../nixos/features/i3/config.nix {
