@@ -13,6 +13,7 @@
     spotify
     nvtopPackages.full
     local-pkgs.openvsp
+    local-pkgs.foxglove
   ];
 
   home.file.".config/i3/config".source = import ../../nixos/features/i3/config.nix {

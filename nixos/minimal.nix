@@ -31,6 +31,7 @@
     git-lfs
     gnumake
     gcc
+    hexyl
     htop
     just
     nasm

@@ -9,12 +9,13 @@
     ../../features/kindle
     ../../features/bluetooth.nix
     ../../features/sdr.nix
-    ../../features/i3
+    # ../../features/i3
     ../../features/virtualbox.nix
   ];
 
   environment.systemPackages = with pkgs; [
     android-studio
+    arandr
     linuxKernel.packages.linux_zen.perf
     teams-for-linux
     (wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })

@@ -5,6 +5,12 @@
   services.libinput.enable = true;
   services.displayManager.defaultSession = "none+i3";
 
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+      Xft.dpi: 160
+    EOF
+  '';
+
   services.xserver = {
     enable = true;
 

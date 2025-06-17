@@ -15,7 +15,6 @@
   graphviz,
   lib,
 }:
-
 stdenv.mkDerivation rec {
   pname = "openvsp";
   version = "3.41.0";

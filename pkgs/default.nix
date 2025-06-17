@@ -10,4 +10,5 @@
     hash = "sha256-w+IZ4T63/WNl9TpiCwHiAVY43XDF5ilF8pZMcV0P5/o=";
   };
   openvsp = pkgs.callPackage ./open-vsp.nix { };
+  foxglove = pkgs.callPackage ./foxglove.nix { };
 }
