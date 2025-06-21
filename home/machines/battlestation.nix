@@ -3,6 +3,8 @@
   imports = [
     ../global.nix
     ../features/desktop
+    # TODO: fix
+    # ../features/sway
   ];
 
   home.packages = with pkgs; [

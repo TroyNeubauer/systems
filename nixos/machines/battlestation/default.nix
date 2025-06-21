@@ -9,7 +9,9 @@
     ../../features/kindle
     ../../features/bluetooth.nix
     ../../features/sdr.nix
-    # ../../features/i3
+    ../../features/i3
+    # TODO: fix
+    # ../../features/sway
     ../../features/virtualbox.nix
   ];
 
@@ -57,6 +59,8 @@
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
+
+  security.polkit.enable = true;
 
   services.duo-enforcer.enable = true;
 
