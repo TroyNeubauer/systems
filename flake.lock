@@ -51,11 +51,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1736307179,
-        "narHash": "sha256-U+iXKh8xHWeVHusAWBAH0pZZe3ELcJe2Nahcxr/KCpk=",
+        "lastModified": 1751117439,
+        "narHash": "sha256-p7OuLTKOm5C/3J99rFJRcfXXKV5r0ld/0h6/I14CdSI=",
         "owner": "TroyNeubauer",
         "repo": "duo-enforcer",
-        "rev": "89c8af075934750d2673b4a308ac4eb2982f1277",
+        "rev": "7e011484c100532e9fa74870c496d175aee27135",
         "type": "github"
       },
       "original": {
