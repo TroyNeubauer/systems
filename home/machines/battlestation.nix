@@ -14,7 +14,7 @@
     discord
     spotify
     nvtopPackages.full
-    local-pkgs.openvsp
+    # local-pkgs.openvsp
     local-pkgs.foxglove
   ];
 
