@@ -79,7 +79,7 @@
         };
       };
       darwinConfigurations = {
-        "Troys-Air" = darwin.lib.darwinSystem {
+        "Troys-MacBook-Air" = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
             home-manager.darwinModules.home-manager

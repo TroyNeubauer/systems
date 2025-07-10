@@ -11,6 +11,7 @@
     cargo-expand
     clang
     clang-tools
+    cas-rs
     delta
     eza
     fd
