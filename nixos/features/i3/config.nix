@@ -13,11 +13,17 @@ let
   '';
   launchRofiScript = writeShellScript "launch-rofi" "${rofi}/bin/rofi -modi drun,run -show drun";
   launchDuoFirefox = writeShellScript "launch-duo-firefox" "${firefox}/bin/firefox --new-tab https://duolingo.com --new-tab http://127.0.0.1:4550/";
+  configureMonitors = writeShellScript "configure-monitors" ''
+    if [ -f ~/.screenlayout/active.sh ]; then
+      ~/.screenlayout/active.sh
+    fi
+  '';
 in writeText "i3_config" ''
 
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+exec --no-startup-id ${configureMonitors}
 
-set $mod Mod4
+set $mod Mod1
 
 font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3

@@ -10,13 +10,19 @@
     ../../features/bluetooth.nix
     ../../features/sdr.nix
     ../../features/i3
+    # TODO: fix
+    # ../../features/sway
+    ../../features/virtualbox.nix
   ];
 
   environment.systemPackages = with pkgs; [
     android-studio
+    arandr
     linuxKernel.packages.linux_zen.perf
     teams-for-linux
     (wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
+    unstable.kicad
+    picotool
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;
@@ -53,6 +59,8 @@
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
+
+  security.polkit.enable = true;
 
   services.duo-enforcer.enable = true;
 

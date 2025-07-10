@@ -147,3 +147,4 @@ SEMVER
 endian
 tempfile
 linux
+devshell
