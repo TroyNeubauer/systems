@@ -20,4 +20,5 @@
 
   hardware.hackrf.enable = true;
   hardware.bladeRF.enable = true;
+  hardware.rtl-sdr.enable = true;
 }
