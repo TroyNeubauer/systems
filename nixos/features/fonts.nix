@@ -42,13 +42,7 @@
     fontDir.enable = true;
     enableGhostscriptFonts = true;
 
-    packages = with pkgs.nerdfonts; [
-      fira-code
-      droid-sans-mono
-      jet-brains-mono
-      fantsaque-sans-mono
-      iosevka
-    ] ++ builtins.attrValues {
+    packages = builtins.attrValues {
       inherit (pkgs)
 
       corefonts  # Micrsoft free fonts
