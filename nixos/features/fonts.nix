@@ -1,15 +1,7 @@
 { pkgs
 , lib
 , ...}:
-let
-  nerdFonts = [
-    "FiraCode"
-    "DroidSansMono"
-    "JetBrainsMono"
-    "FantasqueSansMono"
-    "Iosevka"
-  ];
-in {
+{
   # set the console font
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
@@ -50,8 +42,12 @@ in {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
 
-    packages = [
-      (pkgs.nerdfonts.override { fonts = nerdFonts; })
+    packages = with pkgs.nerdfonts; [
+      fira-code
+      droid-sans-mono
+      jet-brains-mono
+      fantsaque-sans-mono
+      iosevka
     ] ++ builtins.attrValues {
       inherit (pkgs)
 
