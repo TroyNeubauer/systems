@@ -9,7 +9,6 @@
     gimp
     vlc
     libreoffice-qt
-    unstable.qbittorrent
     xclip
   ];
 
