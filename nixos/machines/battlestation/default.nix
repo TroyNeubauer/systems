@@ -81,8 +81,9 @@
     enable = true;
     settings.PasswordAuthentication = true;
     extraConfig = ''
-      ListenAddress = 10.222.0.3
-      ListenAddress = 10.56.0.4
+      # ListenAddress = 10.222.0.3
+      # ListenAddress = 10.56.0.4
+      ListenAddress = 0.0.0.0
     '';
   };
 

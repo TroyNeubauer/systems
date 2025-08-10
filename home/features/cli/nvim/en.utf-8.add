@@ -148,3 +148,6 @@ endian
 tempfile
 linux
 devshell
+ethernet
+hardlinking
+killswitch
