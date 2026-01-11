@@ -23,6 +23,7 @@
     (wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
     unstable.kicad
     picotool
+    unstable.claude-code
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;
