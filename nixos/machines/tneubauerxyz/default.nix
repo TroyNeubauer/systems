@@ -10,7 +10,7 @@
   boot.loader.grub.efiSupport = false;
   boot.loader.grub.device = "/dev/vda";
 
-  networking.hostName = "tneubauerxyz"; 
+  networking.hostName = "tneubauerxyz";
   networking.networkmanager.enable = true;
 
   # ========== Server hosts ==========

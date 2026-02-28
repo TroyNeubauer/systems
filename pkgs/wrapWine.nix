@@ -16,13 +16,14 @@ in
 , setupScript ? ""
 , firstrunScript ? ""
 , home ? ""
+, extraPackages ? []
 }:
 let
   wineBin = "${wine}/bin/wine${if is64bits then "64" else ""}";
   requiredPackages = [
     wine
     cabextract
-  ];
+  ] ++ extraPackages;
   WINENIX_PROFILES = "$HOME/.wine-nix-profiles";
   PATH = makeBinPath requiredPackages;
   NAME = name;

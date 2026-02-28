@@ -23,6 +23,7 @@
     (wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
     unstable.kicad
     picotool
+    unstable.claude-code
   ];
 
   home-manager.users.troy = import ../../../home/machines/battlestation.nix;
@@ -36,6 +37,8 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
  
   hardware.nvidia = {
     nvidiaSettings = true;
@@ -66,12 +69,22 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  services.udev.extraRules = ''
+    # Comma.ai panda: https://github.com/commaai/panda/tree/master?tab=readme-ov-file#usage
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0666"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="3801", ATTRS{idProduct}=="ddcc", MODE="0666"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="3801", ATTRS{idProduct}=="ddee", MODE="0666"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="bbaa", ATTRS{idProduct}=="ddcc", MODE="0666"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="bbaa", ATTRS{idProduct}=="ddee", MODE="0666"
+  '';
+
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = true;
     extraConfig = ''
-      ListenAddress = 10.222.0.3
-      ListenAddress = 10.56.0.4
+      # ListenAddress = 10.222.0.3
+      # ListenAddress = 10.56.0.4
+      ListenAddress = 0.0.0.0
     '';
   };
 
