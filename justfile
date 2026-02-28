@@ -23,7 +23,7 @@ switch *flags="":
 
 [macos]
 switch *flags="":
-  nix run nix-darwin -- switch --flake .#{{hostname}} {{rebuild_flags}} {{flags}}
+  sudo nix run nix-darwin -- switch --flake .#{{hostname}} {{rebuild_flags}} {{flags}}
 
 
 # Update flake inputs to their latest revisions
