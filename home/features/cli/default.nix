@@ -11,10 +11,8 @@
     cargo-expand
     clang
     clang-tools
-    delta
     eza
     fd
-    fish
     nix-your-shell
     ffmpeg
     git
@@ -30,26 +28,29 @@
     tree
     unzip
     rust-bin.stable.latest.default
-  ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+  ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     gdb
-  ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+  ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
     lldb
   ];
 
-  programs.fzf = {
-    enable = true;
-    enableFishIntegration = true;
-  };
+  programs = {
+    fzf.enable = true;
+    fzf.enableFishIntegration = true;
 
-  # TODO: add `dev` command that adds gc root to nix develop default shell and opens it
-  # See: https://github.com/ruuda/dotfiles/blob/1a28049980c61f22706b2d5d3e8f8951527403a3/zsh/.zshrc#L142-L158
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set fish_greeting # Disable greeting
+    delta.enable = true;
+    delta.enableGitIntegration = true;
 
-      nix-your-shell fish | source
-    '';
-    plugins = [ ];
+    # TODO: add `dev` command that adds gc root to nix develop default shell and opens it
+    # See: https://github.com/ruuda/dotfiles/blob/1a28049980c61f22706b2d5d3e8f8951527403a3/zsh/.zshrc#L142-L158
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        set fish_greeting # Disable greeting
+
+        nix-your-shell fish | source
+      '';
+      plugins = [ ];
+    };
   };
 }

@@ -18,13 +18,15 @@
  
   networking.networkmanager.enable = true;
 
-  services.xserver.dpi = 140;
+  services.xserver.dpi = 280;
+
+  services.libinput.touchpad.disableWhileTyping = true;
 
   nixpkgs.overlays = [ inputs.apple-silicon.overlays.apple-silicon-overlay ];
 
-  hardware.asahi.useExperimentalGPUDriver = true;
-  hardware.asahi.experimentalGPUInstallMode = "replace";
+  hardware.asahi.enable = true;
   hardware.asahi.setupAsahiSound = true;
+  hardware.graphics.enable = true;
 
   services.openssh = {
     enable = true;

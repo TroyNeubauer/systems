@@ -6,7 +6,7 @@
   services.displayManager.defaultSession = "none+i3";
 
   services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+    ${pkgs.xrdb}/bin/xrdb -merge <<EOF
       Xft.dpi: 160
     EOF
   '';

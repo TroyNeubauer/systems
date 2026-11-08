@@ -9,7 +9,7 @@
 
   home.packages = with pkgs; [
     sdrpp
-    unstable.davinci-resolve-studio
+    davinci-resolve-studio
     local-pkgs.webcam-segmentation
     discord
     spotify

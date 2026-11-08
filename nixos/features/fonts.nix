@@ -47,7 +47,7 @@
 
       corefonts  # Micrsoft free fonts
       inconsolata  # monospaced
-      ubuntu_font_family  # Ubuntu fonts
+      ubuntu-classic
       unifont # some international languages
       dejavu_fonts
       freefont_ttf
@@ -56,7 +56,6 @@
       open-fonts
       noto-fonts
       joypixels
-      noto-fonts-extra
       ;
     };
   };
