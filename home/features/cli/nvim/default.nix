@@ -11,7 +11,6 @@
 
     extraPackages = with pkgs; [
       fzf
-      rust-analyzer
       kotlin-language-server
       xsel
     ];

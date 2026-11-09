@@ -6,7 +6,6 @@
   ];
 
   home.packages = with pkgs; [
-    sdrpp
   ];
 
   home.stateVersion = "23.05"; # Please read the comment before changing.

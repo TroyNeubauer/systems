@@ -18,6 +18,7 @@
     nix-your-shell
     ffmpeg
     git
+    gh
     jq
     hex
     htop
