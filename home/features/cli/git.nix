@@ -5,10 +5,11 @@
     lfs.enable = true;
 
     settings = {
-      user.name = "Troy Neubauer";
-      user.email = pkgs.lib.mkDefault "troyneubauer@gmail.com";
-
-      aliases = {
+      user = {
+        name = "Troy Neubauer";
+        email = pkgs.lib.mkDefault "troyneubauer@gmail.com";
+      };
+      alias = {
         set-upstream = "!git branch --set-upstream-to=origin/`${pkgs.git}/bin/git symbolic-ref --short HEAD`";
         amend = "commit -a --amend";
 
@@ -22,7 +23,6 @@
         lg2-specific = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'";
         lg3-specific = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'";
       };
-
       color = {
         ui = "auto";
       };
@@ -44,5 +44,10 @@
         autoSetupRemote = true;
       };
     };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
   };
 }

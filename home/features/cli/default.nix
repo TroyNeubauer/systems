@@ -16,6 +16,7 @@
     nix-your-shell
     ffmpeg
     git
+    gh
     jq
     hex
     htop
@@ -27,7 +28,7 @@
     tokei
     tree
     unzip
-    rust-bin.stable.latest.default
+    (rust-bin.stable.latest.default.override { extensions = [ "rust-src" "rust-analyzer" ]; })
   ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     gdb
   ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
@@ -37,9 +38,6 @@
   programs = {
     fzf.enable = true;
     fzf.enableFishIntegration = true;
-
-    delta.enable = true;
-    delta.enableGitIntegration = true;
 
     # TODO: add `dev` command that adds gc root to nix develop default shell and opens it
     # See: https://github.com/ruuda/dotfiles/blob/1a28049980c61f22706b2d5d3e8f8951527403a3/zsh/.zshrc#L142-L158

@@ -184,6 +184,9 @@
         "home-manager": "home-manager",
         "naersk": "naersk",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unstable": [
+          "nixpkgs"
+        ],
         "rust-overlay": "rust-overlay_2"
       }
     },

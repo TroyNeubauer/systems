@@ -7,9 +7,6 @@
   environment.systemPackages = [ pkgs.fish pkgs.just ];
   environment.shells = [pkgs.fish];
   
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  
   nix.settings.experimental-features = "nix-command flakes";
   nix.settings.trusted-users = [ "troyneubauer" "root" "dgramop" ];
   
@@ -19,6 +16,9 @@
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
+
+  # Newer Nix installs create the nixbld group with GID 350 instead of 30000
+  ids.gids.nixbld = 350;
   
   nixpkgs.hostPlatform = "aarch64-darwin";
   

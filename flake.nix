@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # TODO: keep in case we want to put nixpkgs back on stable. Follow for now
+    nixpkgs-unstable.follows = "nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
