@@ -3,6 +3,9 @@
 { lib, pkgs, ...}:
 {
   services.libinput.enable = true;
+
+  # brightnessctl's udev rules let the `video` group write backlight / LED brightness
+  services.udev.packages = [ pkgs.brightnessctl ];
   services.displayManager.defaultSession = "none+i3";
 
   services.xserver.displayManager.sessionCommands = ''

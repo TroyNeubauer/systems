@@ -25,7 +25,6 @@
       gruvbox-nvim
       luasnip
 
-      lsp-zero-nvim
       nvim-cmp
       cmp_luasnip
       cmp-nvim-lsp
