@@ -68,8 +68,8 @@
         battlestation = mkNixos [ ./nixos/machines/battlestation ];
         # 2023 m2 mac air
         hamono = mkNixos [ ./nixos/machines/hamono ];
-        # BlueVPS tneubauer.xyz host
-        tneubauerxyz = mkNixos [ ./nixos/machines/tneubauerxyz ];
+        # BlueVPS tneubauer.com host
+        tneubauercom = mkNixos [ ./nixos/machines/tneubauercom ];
       };
       homeConfigurations = {
         "battlestation" = home-manager.lib.homeManagerConfiguration {

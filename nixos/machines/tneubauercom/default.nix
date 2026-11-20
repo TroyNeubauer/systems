@@ -10,22 +10,22 @@
   boot.loader.grub.efiSupport = false;
   boot.loader.grub.device = "/dev/vda";
 
-  networking.hostName = "tneubauerxyz";
+  networking.hostName = "tneubauercom";
   networking.networkmanager.enable = true;
 
   # ========== Server hosts ==========
   services.nginx = {
     enable = true;
   
-    virtualHosts."tneubauer.xyz" = {
+    virtualHosts."tneubauer.com" = {
       forceSSL = true;
       enableACME = true;
       root = "/www/troy/public";
     };
-    virtualHosts."www.tneubauer.xyz" = {
+    virtualHosts."www.tneubauer.com" = {
       enableACME = true;
       forceSSL = true;
-      globalRedirect = "tneubauer.xyz";
+      globalRedirect = "tneubauer.com";
     };
   
     virtualHosts."jcaiola.com" = {
@@ -45,8 +45,8 @@
     acceptTerms = true;
     defaults.email = "neubauertroy@gmail.com";
 
-    certs."tneubauer.xyz".extraDomainNames = [
-      "www.tneubauer.xyz"
+    certs."tneubauer.com".extraDomainNames = [
+      "www.tneubauer.com"
     ];
     certs."jcaiola.com".extraDomainNames = [
       "www.jcaiola.com"
