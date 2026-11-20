@@ -2,7 +2,9 @@
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
+    withPython3 = false;
+    withRuby = false;
 
     defaultEditor = true;
     viAlias = true;
@@ -22,7 +24,6 @@
       gruvbox-nvim
       luasnip
 
-      lsp-zero-nvim
       nvim-cmp
       cmp_luasnip
       cmp-nvim-lsp
@@ -46,7 +47,8 @@
   # TODO: do this automatically
   # Systemd service may work, but then we have to assume the user always clones this repo into ~/nix/systems, akward, so punting for now
 
-  home.file.".config/nvim/init.lua".source = ./init.lua;
+  # home-manager generates init.lua itself (provider settings etc.), so append ours to it
+  programs.neovim.initLua = builtins.readFile ./init.lua;
   home.file.".config/nvim/lua/line.lua".source = ./lua/line.lua;
   home.file.".config/nvim/lua/lsp.lua".source = ./lua/lsp.lua;
   home.file.".config/nvim/lua/misc.lua".source = ./lua/misc.lua;

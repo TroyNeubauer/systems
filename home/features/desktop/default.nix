@@ -13,6 +13,7 @@
   ];
 
   programs.firefox.enable = true;
+  programs.firefox.configPath = "${config.xdg.configHome}/mozilla/firefox";
 
   services.flameshot.enable = true;
 }

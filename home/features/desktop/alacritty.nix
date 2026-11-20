@@ -6,7 +6,7 @@ let
     rev = "c2369cd1ec555c8dba7ea39bd059b7c036f1e637";
     hash = "sha256-eCJ9CpKoBTaA684vDJ6p8IB2AhvIBfrrKuyoKCr1BJs=";
   };
-  font_size = builtins.toString (if pkgs.stdenv.isLinux then 10 else 15);
+  font_size = builtins.toString (if pkgs.stdenv.hostPlatform.isLinux then 10 else 15);
 in {
   programs.alacritty.enable = true;
 

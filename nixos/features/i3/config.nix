@@ -1,4 +1,4 @@
-{ writeText, writeShellScript, alacritty, firefox, rofi, pavucontrol, blueman, enforceDuo }: 
+{ writeText, writeShellScript, alacritty, firefox, rofi, pavucontrol, blueman, wireplumber, brightnessctl, playerctl, enforceDuo }: 
 let
   enforceDuoScript = writeShellScript "enforce-duo" ''
     if [ -f /tmp/.computer_unblocked ]; then
@@ -36,10 +36,21 @@ ${if enforceDuo then ''
 '' else ""}
 
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# Volume (PipeWire), capped at 100%
+bindsym XF86AudioRaiseVolume exec --no-startup-id ${wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+ && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id ${wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id ${wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id ${wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && $refresh_i3status
+
+# Media
+bindsym XF86AudioPlay exec --no-startup-id ${playerctl}/bin/playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id ${playerctl}/bin/playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id ${playerctl}/bin/playerctl next
+bindsym XF86AudioPrev exec --no-startup-id ${playerctl}/bin/playerctl previous
+
+# Screen backlight (no-op on machines without one)
+bindsym XF86MonBrightnessUp exec --no-startup-id ${brightnessctl}/bin/brightnessctl --class=backlight set 5%+
+bindsym XF86MonBrightnessDown exec --no-startup-id ${brightnessctl}/bin/brightnessctl --class=backlight --min-value=1 set 5%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

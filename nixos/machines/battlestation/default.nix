@@ -21,7 +21,7 @@
     linuxKernel.packages.linux_zen.perf
     teams-for-linux
     (wrapOBS { plugins = [ obs-studio-plugins.obs-backgroundremoval ]; })
-    unstable.kicad
+    kicad
     picotool
     unstable.claude-code
   ];

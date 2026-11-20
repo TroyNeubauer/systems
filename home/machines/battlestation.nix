@@ -9,7 +9,7 @@
 
   home.packages = with pkgs; [
     sdrpp
-    unstable.davinci-resolve-studio
+    davinci-resolve-studio
     local-pkgs.webcam-segmentation
     discord
     spotify
@@ -19,7 +19,7 @@
   ];
 
   home.file.".config/i3/config".source = import ../../nixos/features/i3/config.nix {
-    inherit (pkgs) writeText writeShellScript alacritty firefox rofi pavucontrol blueman;
+    inherit (pkgs) writeText writeShellScript alacritty firefox rofi pavucontrol blueman wireplumber brightnessctl playerctl;
     enforceDuo = true;
   };
 
