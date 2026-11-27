@@ -12,4 +12,5 @@
   # TODO: FIXME
   # openvsp = pkgs.callPackage ./open-vsp.nix { };
   foxglove = pkgs.callPackage ./foxglove.nix { };
+  rust-glancer = pkgs.callPackage ./rust-glancer.nix { };
 }

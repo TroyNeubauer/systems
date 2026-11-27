@@ -62,13 +62,42 @@ vim.lsp.config('rust_analyzer', {
   root_markers = { 'Cargo.lock' },
 })
 
+-- Pull in nix-generated lsp selection (rust-glancer or rust-analyzer)
+local ok, rust_lsp = pcall(require, 'rust_lsp')
+if not ok then rust_lsp = 'rust-glancer' end
+
+vim.lsp.config('rust_glancer', {
+  cmd = { 'rust-glancer', 'lsp' },
+  cmd_env = { RUST_GLANCER_LOG = 'warn' },
+  filetypes = { 'rust' },
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    -- Attach stdlib and dep cache from default location so rust-glance doesnt spawn a new instance
+    local cargo_home = vim.env.CARGO_HOME or (vim.env.HOME .. '/.cargo')
+    local is_library = vim.startswith(fname, cargo_home .. '/registry/src/')
+      or vim.startswith(fname, cargo_home .. '/git/checkouts/')
+      or fname:find('/lib/rustlib/src/rust/library/', 1, true) ~= nil
+    if is_library then
+      local client = vim.lsp.get_clients({ name = 'rust_glancer' })[1]
+      if client then on_dir(client.config.root_dir) end
+      return
+    end
+    -- glancer can't run without a workspace folder, so skip if missing
+    local root = vim.fs.root(fname, { 'Cargo.lock' })
+    if root then on_dir(root) end
+  end,
+})
+
 vim.lsp.config('clangd', {
   cmd = { 'clangd' },
   filetypes = { 'c', 'cpp' },
   root_markers = { 'build' },
 })
 
-vim.lsp.enable({ 'rust_analyzer', 'clangd' })
+vim.lsp.enable({
+  rust_lsp == 'rust-glancer' and 'rust_glancer' or 'rust_analyzer',
+  'clangd',
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)

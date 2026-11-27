@@ -22,7 +22,6 @@
     htop
     hunspell
     hunspellDicts.en_US
-    mold
     p7zip
     tmux
     tokei
@@ -31,6 +30,7 @@
     (rust-bin.stable.latest.default.override { extensions = [ "rust-src" "rust-analyzer" ]; })
   ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     gdb
+    mold
   ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
     lldb
   ];

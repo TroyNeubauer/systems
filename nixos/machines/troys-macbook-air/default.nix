@@ -9,7 +9,9 @@
   
   nix.settings.experimental-features = "nix-command flakes";
   nix.settings.trusted-users = [ "troyneubauer" "root" "dgramop" ];
-  
+
+  nix.linux-builder.enable = true;
+
   programs.fish.enable = true;
   programs.zsh.enable = false;
   
